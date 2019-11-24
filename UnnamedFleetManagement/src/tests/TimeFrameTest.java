@@ -46,5 +46,5 @@ class TimeFrameTest {
 		
 		assertTrue(actual);
 	}
-
+	
 }
