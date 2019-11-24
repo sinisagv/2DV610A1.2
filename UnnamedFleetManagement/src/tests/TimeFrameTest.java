@@ -1,6 +1,7 @@
 package tests;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,14 @@ class TimeFrameTest {
 		sut.setEndDate(sdf.parse("23/12/2019"));
 
 		assertFalse(sut.overlapsWith(new TimeFrame(sdf.parse("24/12/2019"), sdf.parse("27/12/2109"))));
+	}
+
+	@Test
+	void overlapsWithShouldReturnTrue() throws ParseException {
+		sut.setStartDate(sdf.parse("18/12/2019"));
+		sut.setEndDate(sdf.parse("23/12/2019"));
+		
+		assertTrue(sut.overlapsWith(new TimeFrame(sdf.parse("24/12/2019"), sdf.parse("28/12/2019"))));
 	}
 
 }
