@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public abstract class Vehicle {
-	private ArrayList<TimeFrame> unavailability;
+	private ArrayList<TimeFrame> unavailability = new ArrayList<TimeFrame>();
 	private CargoType cargoType;
 	private int capacity;
 	private int volume;
@@ -56,7 +56,7 @@ public abstract class Vehicle {
 	}
 	
 	public boolean addUnvailability(TimeFrame frame) {
-		return false;
+		return unavailability.add(frame);
 	}
 
 

@@ -13,6 +13,7 @@ import model.Bus;
 import model.TimeFrame;
 
 class BusTest {
+	Bus sut = new Bus();
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -23,7 +24,7 @@ class BusTest {
 	}
 
 	@Test
-	void addAunavailabiltyShouldReturnTrue(Bus sut) {
+	void addAunavailabiltyShouldReturnTrue() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 		try {
 			assertTrue(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
