@@ -32,6 +32,6 @@ public class TimeFrame {
 	}
 
 	public boolean overlapsWith(TimeFrame frame) {
-		return true;
+		return !(this.startDate.after(frame.getEndDate()) || this.endDate.before(frame.startDate));
 	}
 }
