@@ -1,6 +1,8 @@
 package test.view;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -21,6 +23,16 @@ class MenuViewTest {
 		System.setOut(new PrintStream(out));
 		SUT.show();
 		assertEquals(testString, out.toString().split("\r")[0]);
+	}
+	
+	@Test
+	void should_execute_action() {
+		IView SUT = new MenuView("test");
+		SUT.addOption("testOption", () -> {
+			assertTrue(true);
+		});
+		SUT.executeOption(1);
+		fail("Did not execute action");
 	}
 
 }
