@@ -3,10 +3,10 @@ package model;
 import java.util.ArrayList;
 
 public class Fleet {
-	private ArrayList<Vehicle> vehicles;
+	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	public boolean addVehicle(Vehicle v) {
-		return false;
+		return vehicles.add(v);
 	}
 	
 	public boolean removeVehicle(Vehicle v) {
