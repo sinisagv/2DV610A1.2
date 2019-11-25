@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +34,7 @@ class BusTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	void isAvailableShouldReturnTrue() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");

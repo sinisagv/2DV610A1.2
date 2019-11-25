@@ -52,7 +52,12 @@ public abstract class Vehicle {
 	}
 	
 	public boolean isAvailable(TimeFrame frame) {
-		return false;
+		for(TimeFrame tf : unavailability) {
+			if(tf.overlapsWith(frame)) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public boolean addUnvailability(TimeFrame frame) {
