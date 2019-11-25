@@ -53,7 +53,7 @@ public abstract class Vehicle {
 	
 	public boolean isAvailable(TimeFrame frame) {
 		for(TimeFrame tf : unavailability) {
-			if(tf.overlapsWith(frame)) {
+			if(frame.overlapsWith(tf)) {
 				return false;
 			}
 		}

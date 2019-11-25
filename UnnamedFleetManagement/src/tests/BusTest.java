@@ -38,7 +38,18 @@ class BusTest {
 	@Test
 	void isAvailableShouldReturnTrue() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-		assertTrue(sut.isAvailable(new TimeFrame(sdf.parse("23/12/2019"), sdf.parse("24/01/2019"))));
+		assertTrue(sut.isAvailable(new TimeFrameStub(sdf.parse("23/12/2019"), sdf.parse("24/01/2019"))));
 	}
 
+}
+class TimeFrameStub extends TimeFrame{
+	public TimeFrameStub(Date d1, Date d2) {
+		this.setStartDate(d1);
+		this.setEndDate(d2);
+	}
+
+	@Override
+	public boolean overlapsWith(TimeFrame frame) {
+		return false;
+	}
 }
