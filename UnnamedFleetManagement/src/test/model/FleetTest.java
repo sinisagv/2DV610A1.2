@@ -29,11 +29,16 @@ class FleetTest {
 	}
 	
 	@Test
-	void shouldReturnTrueWhenRemovingExistingVehicle() {
+	void shouldReturnTrueWhenRemovingExistingVehicleOrFalseWhenVehicleDoesntExist() {
 		Vehicle b = new Bus();
 		sut.addVehicle(b);
 		assertTrue(sut.removeVehicle(b));
 		assertFalse(sut.removeVehicle(new Bus()));
+	}
+	
+	@Test
+	void shouldReturnTrueWhenVehicleIsEdited() {
+		assertTrue(sut.editVehicle(new Bus()));
 	}
 
 }
