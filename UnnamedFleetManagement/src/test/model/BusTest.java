@@ -1,5 +1,7 @@
 package test.model;
 
+import static org.mockito.Mockito.*;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,10 +28,13 @@ class BusTest {
 	}
 
 	@Test
-	void addAunavailabiltyShouldReturnTrue() {
+	void addAunavailabiltyShouldReturnTrue() throws ParseException {
+		TimeFrame mockedTF = mock(TimeFrame.class);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+		when(mockedTF.overlapsWith(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019")))).thenReturn(false)
+				.thenReturn(true);
 		try {
-			assertTrue(sut.addUnvailability(new TimeFrameStub(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
+			assertTrue(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
 			assertFalse(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -39,19 +44,12 @@ class BusTest {
 
 	@Test
 	void isAvailableShouldReturnTrue() throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-		assertTrue(sut.isAvailable(new TimeFrameStub(sdf.parse("23/12/2019"), sdf.parse("24/01/2019"))));
+		TimeFrame mockedTF = mock(TimeFrame.class);
+		TimeFrame testTF = mock(TimeFrame.class);
+		sut.addUnvailability(mockedTF);
+		when(mockedTF.overlapsWith(testTF)).thenReturn(false).thenReturn(true);
+		assertTrue(sut.isAvailable(testTF));
+		assertFalse(sut.isAvailable(testTF));
 	}
 
-}
-class TimeFrameStub extends TimeFrame{
-	public TimeFrameStub(Date d1, Date d2) {
-		this.setStartDate(d1);
-		this.setEndDate(d2);
-	}
-
-	@Override
-	public boolean overlapsWith(TimeFrame frame) {
-		return false;
-	}
 }

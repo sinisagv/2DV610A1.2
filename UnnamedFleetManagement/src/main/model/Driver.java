@@ -44,7 +44,7 @@ public class Driver {
 
 	public boolean addShift(TimeFrame shift) {
 		for (TimeFrame tf : schedule) {
-			if (shift.overlapsWith(tf)) {
+			if (tf.overlapsWith(shift)) {
 				return false;
 			}
 		}
@@ -79,7 +79,12 @@ public class Driver {
 	}
 
 	public boolean isAvailable(TimeFrame frame) {
-		return false;
+		for(TimeFrame tf : schedule) {
+			if(tf.overlapsWith(frame)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
