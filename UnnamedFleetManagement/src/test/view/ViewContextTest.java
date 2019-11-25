@@ -1,5 +1,6 @@
 package test.view;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -43,7 +44,17 @@ class ViewContextTest {
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		SUT.start();
 		verify(mockedIView, times(1)).executeOption(1);
+	}
+	
+	@Test
+	void should_validate_input() {
+		IView mockedIView = mock(IView.class);
 		
+		Scanner sc = new Scanner("-1");
+		
+		ViewContext SUT = new ViewContext(mockedIView, sc);
+		SUT.start();
+		assertThrows(IllegalArgumentException.class, () -> SUT.start());
 	}
 
 }
