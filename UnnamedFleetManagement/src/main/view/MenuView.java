@@ -34,7 +34,7 @@ public class MenuView implements IView {
 	@Override
 	public int optionSize() {
 		
-		return 0;
+		return options.size();
 	}
 
 }
