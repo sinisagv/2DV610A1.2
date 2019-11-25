@@ -1,8 +1,9 @@
 package test.view;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import org.junit.jupiter.api.Test;
 
 import main.view.IView;
@@ -16,7 +17,6 @@ class ViewContextTest {
 		ViewContext SUT = new ViewContext(mockedIView);
 		SUT.start();
 		verify(mockedIView, atLeastOnce()).show();
-		
 	}
 
 }

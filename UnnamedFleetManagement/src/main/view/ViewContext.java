@@ -9,7 +9,7 @@ public class ViewContext {
 	}
 
 	public void start() {
-		
+		view.show();
 
 	}
 
