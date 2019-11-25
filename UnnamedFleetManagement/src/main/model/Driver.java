@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Driver {
 	private String name;
-	private ArrayList<Qualifications> qualifications;
-	private ArrayList<TimeFrame> schedule;
+	private ArrayList<Qualifications> qualifications = new ArrayList<Qualifications>();
+	private ArrayList<TimeFrame> schedule = new ArrayList<TimeFrame>();
 
 	public Driver() {
 		super();
@@ -43,7 +43,12 @@ public class Driver {
 	}
 	
 	public boolean addShift(TimeFrame shift) {
-		return false;
+		for(TimeFrame tf: schedule) {
+			if(tf.overlapsWith(shift)) {
+				return false;
+			}
+		}
+		return schedule.add(shift);
 	}
 	
 	public boolean removeShift(TimeFrame shift) {
