@@ -52,6 +52,11 @@ public class Driver {
 	}
 	
 	public boolean removeShift(TimeFrame shift) {
+		for(TimeFrame tf : schedule) {
+			if((shift.getStartDate().equals(tf.getStartDate())) && (shift.getEndDate().equals(tf.getEndDate()))) {
+				return schedule.remove(tf);
+			}
+		}
 		return false;
 	}
 	

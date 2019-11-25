@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.model.Driver;
+import main.model.TimeFrame;
 
 class DriverTest {
 	
@@ -33,7 +34,8 @@ class DriverTest {
 	@Test
 	void removeShiftShouldReturnTrue() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
-		TimeFrameStub tfs = new TimeFrameStub(sdf.parse("20/11/2019 08:00"), sdf.parse("20/11/2019 17:00"));
+		TimeFrame tfs = new TimeFrame(sdf.parse("20/11/2019 08:00"), sdf.parse("20/11/2019 17:00"));
+		sut.addShift(new TimeFrameStub(sdf.parse("20/11/2019 08:00"), sdf.parse("20/11/2019 17:00")));
 		assertTrue(sut.removeShift(tfs));
 		int expectedSize = 0;
 		assertEquals(sut.getSchedule().size(), expectedSize);
