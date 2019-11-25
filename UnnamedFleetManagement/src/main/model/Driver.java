@@ -79,7 +79,12 @@ public class Driver {
 	}
 
 	public boolean isAvailable(TimeFrame frame) {
-		return false;
+		for(TimeFrame tf : schedule) {
+			if(frame.overlapsWith(tf)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }
