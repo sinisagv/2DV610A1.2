@@ -14,6 +14,11 @@ public class Fleet {
 	}
 	
 	public boolean editVehicle(Vehicle v) {
+		for(Vehicle vehicle : vehicles) {
+			if(vehicle.getID().equals(v.getID())) {
+				return removeVehicle(vehicle) && addVehicle(v);
+			}
+		}
 		return false;
 	}
 }
