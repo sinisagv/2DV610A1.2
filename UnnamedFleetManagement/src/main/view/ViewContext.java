@@ -7,7 +7,7 @@ public class ViewContext {
 	private IView view;
 	private Scanner input;
 
-	public ViewContext(IView primaryView) {
+	public ViewContext(IView primaryView, Scanner input) {
 		this.view = primaryView;
 		this.input = input;
 	}
