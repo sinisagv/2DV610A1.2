@@ -52,7 +52,7 @@ class ViewContextTest {
 	}
 
 	@Test
-	void should_validate_input() {
+	void should_throw_exception_on_bad_input() {
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.executeOption(-1)).thenReturn(false); // mocked IView will check if the input is in range (i.e.
 																// return false)
