@@ -1,6 +1,7 @@
 package test.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.model.Driver;
+import main.model.Qualification;
 import main.model.TimeFrame;
 
 class DriverTest {
@@ -39,6 +41,15 @@ class DriverTest {
 		assertTrue(sut.removeShift(tfs));
 		int expectedSize = 0;
 		assertEquals(sut.getSchedule().size(), expectedSize);
+	}
+	
+	@Test
+	void addQualificationShouldReturnTrue() {
+		assertTrue(sut.addQualification(Qualification.C));
+		assertFalse(sut.addQualification(Qualification.C));
+		assertTrue(sut.addQualification(Qualification.D));
+		int expectedSize = 0;
+		assertEquals(sut.getQualifications().size(), expectedSize);
 	}
 
 }
