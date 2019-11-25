@@ -14,6 +14,9 @@ public class ViewContext {
 
 	public void start() {
 		view.show();
+		int selection = 0;
+		selection = input.nextInt();
+		view.executeOption(selection);
 	}
 	
 	public void switchView(IView newView) {

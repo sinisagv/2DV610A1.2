@@ -17,7 +17,7 @@ class ViewContextTest {
 	@Test
 	void start_should_show_first_view() {
 		IView mockedIView = mock(IView.class);
-		ViewContext SUT = new ViewContext(mockedIView, null);
+		ViewContext SUT = new ViewContext(mockedIView, new Scanner("1"));
 		SUT.start();
 		verify(mockedIView, atLeastOnce()).show();
 	}
@@ -27,7 +27,7 @@ class ViewContextTest {
 		IView mockedIView = mock(IView.class);
 		IView testView = mock(IView.class);
 
-		ViewContext SUT = new ViewContext(mockedIView, null);
+		ViewContext SUT = new ViewContext(mockedIView, new Scanner("1"));
 		SUT.switchView(testView);
 		verify(testView, times(1)).show(); // checks that show() is called on the first option of menu 1
 
@@ -41,7 +41,9 @@ class ViewContextTest {
 		Scanner sc = new Scanner("1");
 
 		ViewContext SUT = new ViewContext(mockedIView, sc);
+		SUT.start();
 		verify(mockedIView, times(1)).executeOption(1);
+		
 	}
 
 }
