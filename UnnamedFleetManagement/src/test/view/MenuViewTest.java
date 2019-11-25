@@ -17,7 +17,7 @@ import main.view.MenuView;
 class MenuViewTest {
 
 	@Test
-	void should_show_menuTitle() { // 
+	void should_show_menuTitle() { 
 		String testString = "TestMenu";
 		IView SUT = new MenuView(testString);
 		OutputStream out = new ByteArrayOutputStream();
@@ -34,5 +34,6 @@ class MenuViewTest {
 		SUT.executeOption(1);
 		verify(mockRunnable).run();
 	}
-
+	// TODO check SUT.optionSize();
+	
 }
