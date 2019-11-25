@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Driver {
 	private String name;
-	private ArrayList<Qualifications> qualifications;
-	private ArrayList<TimeFrame> schedule;
+	private ArrayList<Qualification> qualifications = new ArrayList<Qualification>();
+	private ArrayList<TimeFrame> schedule = new ArrayList<TimeFrame>();
 
 	public Driver() {
 		super();
 	}
 
-	public Driver(String name, ArrayList<Qualifications> qualifications, ArrayList<TimeFrame> schedule) {
+	public Driver(String name, ArrayList<Qualification> qualifications, ArrayList<TimeFrame> schedule) {
 		super();
 		this.name = name;
 		this.qualifications = qualifications;
@@ -26,11 +26,11 @@ public class Driver {
 		this.name = name;
 	}
 
-	public ArrayList<Qualifications> getQualifications() {
+	public ArrayList<Qualification> getQualifications() {
 		return qualifications;
 	}
 
-	public void setQualifications(ArrayList<Qualifications> qualifications) {
+	public void setQualifications(ArrayList<Qualification> qualifications) {
 		this.qualifications = qualifications;
 	}
 
@@ -43,17 +43,32 @@ public class Driver {
 	}
 	
 	public boolean addShift(TimeFrame shift) {
-		return false;
+		for(TimeFrame tf: schedule) {
+			if(shift.overlapsWith(tf)) {
+				return false;
+			}
+		}
+		return schedule.add(shift);
 	}
 	
 	public boolean removeShift(TimeFrame shift) {
+		for(TimeFrame tf : schedule) {
+			if((shift.getStartDate().equals(tf.getStartDate())) && (shift.getEndDate().equals(tf.getEndDate()))) {
+				return schedule.remove(tf);
+			}
+		}
 		return false;
 	}
 	
-	public boolean addQualifications(TimeFrame shift) {
-		return false;
+	public boolean addQualification(Qualification qualification) {
+		for(Qualification q : qualifications) {
+			if(q.equals(qualification)) {
+				return false;
+			}
+		}
+		return qualifications.add(qualification);
 	}
-	public boolean removeQualifivation(TimeFrame shift) {
+	public boolean removeQualifivation(Qualification q) {
 		return false;
 	}
 	public boolean isAvailable(TimeFrame frame) {
