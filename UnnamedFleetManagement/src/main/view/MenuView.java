@@ -33,7 +33,7 @@ public class MenuView implements IView {
 
 	@Override
 	public int optionSize() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
