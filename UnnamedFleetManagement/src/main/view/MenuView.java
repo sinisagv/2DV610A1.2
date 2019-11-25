@@ -20,9 +20,8 @@ public class MenuView implements IView {
 
 	@Override
 	public void show() {
-		StringBuilder sb = new StringBuilder(menuTitle + "\r\n");
-		System.out.println(sb.toString());
-		
+		StringBuilder sb = new StringBuilder(menuTitle + "\n");
+		System.out.print(sb.toString());
 	}
 
 	@Override

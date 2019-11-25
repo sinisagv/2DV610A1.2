@@ -20,7 +20,7 @@ class ViewContextTest {
 	@Test
 	void start_should_show_first_view() {
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.optionSize()).thenReturn(1);
+		when(mockedIView.menuLength()).thenReturn(1);
 		ViewContext SUT = new ViewContext(mockedIView, new Scanner("1"));
 		SUT.start();
 		verify(mockedIView).show();
@@ -30,8 +30,8 @@ class ViewContextTest {
 	void should_switch_views() {
 		IView mockedIView = mock(IView.class);
 		IView testView = mock(IView.class);
-		when(mockedIView.optionSize()).thenReturn(1);
-		when(testView.optionSize()).thenReturn(1);
+		when(mockedIView.menuLength()).thenReturn(1);
+		when(testView.menuLength()).thenReturn(1);
 
 		ViewContext SUT = new ViewContext(mockedIView, new Scanner("1"));
 		SUT.switchView(testView);
@@ -43,7 +43,7 @@ class ViewContextTest {
 	void should_call_execute_user_selection() { // should pass if it reads user input from scanner (in this case it will
 												// always be 1 and call executeOption with that input)
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.optionSize()).thenReturn(1);
+		when(mockedIView.menuLength()).thenReturn(1);
 
 		Scanner sc = new Scanner("1");
 
@@ -55,7 +55,7 @@ class ViewContextTest {
 	@Test
 	void should_throw_exception_on_bad_input() {
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.optionSize()).thenReturn(1); // returns value of 1 for size
+		when(mockedIView.menuLength()).thenReturn(1); // returns value of 1 for size
 
 		Scanner sc = new Scanner("-1");
 		ViewContext SUT = new ViewContext(mockedIView, sc);
