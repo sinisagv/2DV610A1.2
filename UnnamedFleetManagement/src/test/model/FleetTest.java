@@ -49,6 +49,7 @@ class FleetTest {
 		sut.addVehicle(lorry);
 		bus.setCapacity(60);
 		assertTrue(sut.editVehicle(bus));
+		assertFalse(sut.editVehicle(new Lorry()));
 	}
 
 }
