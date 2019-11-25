@@ -61,7 +61,12 @@ public class Driver {
 	}
 	
 	public boolean addQualification(Qualification q) {
-		return false;
+		for(Qualification qualification : qualifications) {
+			if(q.equals(qualification)) {
+				return false;
+			}
+		}
+		return qualifications.add(q);
 	}
 	public boolean removeQualifivation(Qualification q) {
 		return false;

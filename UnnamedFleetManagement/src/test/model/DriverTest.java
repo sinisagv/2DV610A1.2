@@ -48,7 +48,7 @@ class DriverTest {
 		assertTrue(sut.addQualification(Qualification.C));
 		assertFalse(sut.addQualification(Qualification.C));
 		assertTrue(sut.addQualification(Qualification.D));
-		int expectedSize = 0;
+		int expectedSize = 2;
 		assertEquals(sut.getQualifications().size(), expectedSize);
 	}
 
