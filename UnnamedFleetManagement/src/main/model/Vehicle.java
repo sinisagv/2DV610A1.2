@@ -3,7 +3,7 @@ package main.model;
 import java.util.ArrayList;
 
 public abstract class Vehicle {
-	protected ArrayList<TimeFrame> unavailability = new ArrayList<TimeFrame>();
+	protected ArrayList<TimeFrame> schedule = new ArrayList<TimeFrame>();
 	protected CargoType cargoType;
 	protected int capacity;
 	protected int volume;
@@ -17,7 +17,7 @@ public abstract class Vehicle {
 	
 	public Vehicle(ArrayList<TimeFrame> unavailability, CargoType cargoType, int capacity, int volume, VehicleType type, String ID) {
 		super();
-		this.unavailability = unavailability;
+		this.schedule = unavailability;
 		this.cargoType = cargoType;
 		this.capacity = capacity;
 		this.volume = volume;
@@ -28,10 +28,10 @@ public abstract class Vehicle {
 
 
 	public ArrayList<TimeFrame> getUnavailability() {
-		return unavailability;
+		return schedule;
 	}
 	public void setUnavailability(ArrayList<TimeFrame> unavailability) {
-		this.unavailability = unavailability;
+		this.schedule = unavailability;
 	}
 	public CargoType getCargoType() {
 		return cargoType;
@@ -53,7 +53,7 @@ public abstract class Vehicle {
 	}
 	
 	public boolean isAvailable(TimeFrame frame) {
-		for(TimeFrame tf : unavailability) {
+		for(TimeFrame tf : schedule) {
 			if(frame.overlapsWith(tf)) {
 				return false;
 			}
@@ -62,7 +62,12 @@ public abstract class Vehicle {
 	}
 	
 	public boolean addUnvailability(TimeFrame frame) {
-		return unavailability.add(frame);
+		for(TimeFrame tf : schedule) {
+			if(frame.overlapsWith(tf)) {
+				return false;
+			}
+		}
+		return schedule.add(frame);
 	}
 
 

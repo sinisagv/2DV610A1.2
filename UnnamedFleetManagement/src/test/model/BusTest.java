@@ -1,5 +1,6 @@
 package test.model;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
@@ -28,7 +29,8 @@ class BusTest {
 	void addAunavailabiltyShouldReturnTrue() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 		try {
-			assertTrue(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
+			assertTrue(sut.addUnvailability(new TimeFrameStub(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
+			assertFalse(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
