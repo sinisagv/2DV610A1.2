@@ -1,5 +1,6 @@
 package tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
@@ -32,6 +33,7 @@ class FleetTest {
 		Vehicle b = new Bus();
 		sut.addVehicle(b);
 		assertTrue(sut.removeVehicle(b));
+		assertFalse(sut.removeVehicle(new Bus()));
 	}
 
 }
