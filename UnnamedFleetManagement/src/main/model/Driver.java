@@ -50,10 +50,10 @@ public class Driver {
 		return false;
 	}
 	
-	public boolean addQualification(TimeFrame shift) {
+	public boolean addQualification(Qualifications q) {
 		return false;
 	}
-	public boolean removeQualifivation(TimeFrame shift) {
+	public boolean removeQualifivation(Qualifications q) {
 		return false;
 	}
 	public boolean isAvailable(TimeFrame frame) {
