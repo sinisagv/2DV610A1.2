@@ -1,5 +1,6 @@
 package test.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
@@ -27,6 +28,15 @@ class DriverTest {
 	void addShiftShouldReturnTrueWhenNewShiftIsAdded() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
 		assertTrue(sut.addShift(new TimeFrameStub(sdf.parse("20/11/2019 08:00"), sdf.parse("20/11/2019 17:00"))));
+	}
+	
+	@Test
+	void removeShiftShouldReturnTrue() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+		TimeFrameStub tfs = new TimeFrameStub(sdf.parse("20/11/2019 08:00"), sdf.parse("20/11/2019 17:00"));
+		assertTrue(sut.removeShift(tfs));
+		int expectedSize = 0;
+		assertEquals(sut.getSchedule().size(), expectedSize);
 	}
 
 }
