@@ -33,5 +33,11 @@ class BusTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	void isAvailableShouldReturnTrue() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+		assertTrue(sut.isAvailable(new TimeFrame(sdf.parse("23/12/2019"), sdf.parse("24/01/2019"))));
+	}
 
 }
