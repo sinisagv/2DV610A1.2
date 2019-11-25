@@ -51,6 +51,15 @@ class DriverTest {
 		int expectedSize = 2;
 		assertEquals(sut.getQualifications().size(), expectedSize);
 	}
+	
+	@Test
+	void removeQualificationsShouldReturnTrue() {
+		assertTrue(sut.removeQualifivation(Qualification.D));
+		assertFalse(sut.removeQualifivation(Qualification.D));
+		assertFalse(sut.removeQualifivation(Qualification.C1));
+		int expectedSize = 2;
+		assertEquals(sut.getQualifications().size(), expectedSize);
+	}
 
 }
 
