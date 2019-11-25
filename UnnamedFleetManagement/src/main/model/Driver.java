@@ -41,36 +41,43 @@ public class Driver {
 	public void setSchedule(ArrayList<TimeFrame> schedule) {
 		this.schedule = schedule;
 	}
-	
+
 	public boolean addShift(TimeFrame shift) {
-		for(TimeFrame tf: schedule) {
-			if(shift.overlapsWith(tf)) {
+		for (TimeFrame tf : schedule) {
+			if (shift.overlapsWith(tf)) {
 				return false;
 			}
 		}
 		return schedule.add(shift);
 	}
-	
+
 	public boolean removeShift(TimeFrame shift) {
-		for(TimeFrame tf : schedule) {
-			if((shift.getStartDate().equals(tf.getStartDate())) && (shift.getEndDate().equals(tf.getEndDate()))) {
+		for (TimeFrame tf : schedule) {
+			if ((shift.getStartDate().equals(tf.getStartDate())) && (shift.getEndDate().equals(tf.getEndDate()))) {
 				return schedule.remove(tf);
 			}
 		}
 		return false;
 	}
-	
+
 	public boolean addQualification(Qualification qualification) {
-		for(Qualification q : qualifications) {
-			if(q.equals(qualification)) {
+		for (Qualification q : qualifications) {
+			if (q.equals(qualification)) {
 				return false;
 			}
 		}
 		return qualifications.add(qualification);
 	}
-	public boolean removeQualifivation(Qualification q) {
+
+	public boolean removeQualifivation(Qualification qualificaition) {
+		for (Qualification q : qualifications) {
+			if (q.equals(qualificaition)) {
+				return qualifications.remove(q);
+			}
+		}
 		return false;
 	}
+
 	public boolean isAvailable(TimeFrame frame) {
 		return false;
 	}
