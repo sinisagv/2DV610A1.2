@@ -1,12 +1,13 @@
 package test.view;
 
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
@@ -60,6 +61,16 @@ class ViewContextTest {
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		assertThrows(IllegalArgumentException.class, () -> SUT.start());
 	}
-
-	// TODO pass non-int input test
+	
+	@Test
+	void should_catch_input_mismatch_exception() {
+		IView mockedIView = mock(IView.class);
+		Scanner sc = new Scanner("n");
+		ViewContext SUT = new ViewContext(mockedIView, sc);
+		try {
+			SUT.start();
+		}catch(InputMismatchException e) {
+			fail("Unhandled InputMismatchException");
+		}
+	}
 }
