@@ -15,7 +15,9 @@ public class ViewContext {
 	public void start() {
 		view.show();
 		int selection = input.nextInt();
-		view.executeOption(selection);
+		if(!view.executeOption(selection)) {
+			throw new IllegalArgumentException("Input Invalid");
+		}
 	}
 	
 	public void switchView(IView newView) {
