@@ -58,7 +58,6 @@ class ViewContextTest {
 																// return false)
 
 		Scanner sc = new Scanner("-1");
-
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		assertThrows(IllegalArgumentException.class, () -> SUT.start());
 	}
