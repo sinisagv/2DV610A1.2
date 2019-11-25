@@ -33,9 +33,7 @@ class ViewContextTest {
 		Scanner sc = new Scanner("1"); // scanner that returns 1
 		
 		ViewContext SUT = new ViewContext(mockedIView, sc);
-		mockedIView.addOption("testOption", () -> {
-			SUT.switchView(testView);
-		});
+		SUT.switchView(testView);
 		verify(testView, times(1)).show(); // checks that show() is called on the first option of menu 1
 		
 	}
