@@ -55,12 +55,11 @@ class ViewContextTest {
 	void should_throw_exception_on_bad_input() {
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.optionSize()).thenReturn(1); // returns value of  1 for size
-//		when(mockedIView.executeOption(-1)).thenReturn(false);  old implementation
 
 		Scanner sc = new Scanner("-1");
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		assertThrows(IllegalArgumentException.class, () -> SUT.start());
 	}
 
-	// TODO pass non int input test
+	// TODO pass non-int input test
 }
