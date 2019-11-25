@@ -54,7 +54,7 @@ public abstract class Vehicle {
 	
 	public boolean isAvailable(TimeFrame frame) {
 		for(TimeFrame tf : schedule) {
-			if(frame.overlapsWith(tf)) {
+			if(tf.overlapsWith(frame)) {
 				return false;
 			}
 		}
