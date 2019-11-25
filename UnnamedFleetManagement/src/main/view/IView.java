@@ -8,6 +8,6 @@ public interface IView {
 	public void addOption(String optionName, Runnable action); // adds options to the view
 	public void show();	// displays the view
 	public void executeOption(int selection); // executes the option
-	public int optionSize();
+	public int menuLength();
 	
 }

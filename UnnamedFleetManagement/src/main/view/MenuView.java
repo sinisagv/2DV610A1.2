@@ -32,7 +32,7 @@ public class MenuView implements IView {
 	}
 
 	@Override
-	public int optionSize() {
+	public int menuLength() {
 		
 		return options.size();
 	}

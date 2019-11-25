@@ -34,18 +34,18 @@ class MenuViewTest {
 		SUT.executeOption(1);
 		verify(mockRunnable).run();
 	}
-	// TODO check SUT.optionSize();
+	
 
 	@Test
-	void options_size_should_return_size() {
+	void menuLength_should_return_number_of_options() {
 		IView SUT = new MenuView("test");
-		assertEquals(0, SUT.optionSize());
+		assertEquals(0, SUT.menuLength());
 		SUT.addOption("testOption", () -> {});
-		assertEquals("Size should be 1", 1, SUT.optionSize());
+		assertEquals("Size should be 1", 1, SUT.menuLength());
 		for(int i = 0; i < 1000; i++) {
 			SUT.addOption("testOption" + i, () -> {});
 		}
-		assertEquals("Size should be 1001", 1001, SUT.optionSize());
+		assertEquals("Size should be 1001", 1001, SUT.menuLength());
 	}
 	
 }
