@@ -15,6 +15,8 @@ public class ViewContext {
 	public void start() {
 		view.show();
 		int selection = input.nextInt();
+		if(selection < 1 || selection > view.optionSize())
+			throw new IllegalArgumentException("Invalid Input");
 		view.executeOption(selection);
 	}
 	
