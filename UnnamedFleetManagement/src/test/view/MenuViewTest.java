@@ -35,5 +35,5 @@ class MenuViewTest {
 		verify(mockRunnable).run();
 	}
 	// TODO check SUT.optionSize();
-
+	
 }
