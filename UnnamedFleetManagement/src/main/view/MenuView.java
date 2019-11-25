@@ -21,6 +21,11 @@ public class MenuView implements IView {
 	@Override
 	public void show() {
 		StringBuilder sb = new StringBuilder(menuTitle + "\n");
+		ArrayList<String> optionNames = new ArrayList<String>(options.keySet());
+		int i = 1;
+		for(String str : optionNames) {
+			sb.append(i++ + ". " + str + "\n");
+		}
 		System.out.print(sb.toString());
 	}
 
