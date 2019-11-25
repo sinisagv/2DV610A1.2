@@ -19,18 +19,18 @@ class ViewContextTest {
 	@Test
 	void start_should_show_first_view() {
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.executeOption(1)).thenReturn(true);
+		when(mockedIView.optionSize()).thenReturn(1);
 		ViewContext SUT = new ViewContext(mockedIView, new Scanner("1"));
 		SUT.start();
-		verify(mockedIView, atLeastOnce()).show();
+		verify(mockedIView).show();
 	}
 
 	@Test
 	void should_switch_views() {
 		IView mockedIView = mock(IView.class);
 		IView testView = mock(IView.class);
-		when(mockedIView.executeOption(1)).thenReturn(true);
-		when(testView.executeOption(1)).thenReturn(true);
+		when(mockedIView.optionSize()).thenReturn(1);
+		when(testView.optionSize()).thenReturn(1);
 
 		ViewContext SUT = new ViewContext(mockedIView, new Scanner("1"));
 		SUT.switchView(testView);
@@ -42,8 +42,8 @@ class ViewContextTest {
 	void should_call_execute_user_selection() { // should pass if it reads user input from scanner (in this case it will
 												// always be 1 and call executeOption with that input)
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.executeOption(1)).thenReturn(true);
-		
+		when(mockedIView.optionSize()).thenReturn(1);
+
 		Scanner sc = new Scanner("1");
 
 		ViewContext SUT = new ViewContext(mockedIView, sc);
@@ -54,12 +54,13 @@ class ViewContextTest {
 	@Test
 	void should_throw_exception_on_bad_input() {
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.executeOption(-1)).thenReturn(false); // mocked IView will check if the input is in range (i.e.
-																// return false)
+		when(mockedIView.optionSize()).thenReturn(1); // returns value of  1 for size
+//		when(mockedIView.executeOption(-1)).thenReturn(false);  old implementation
 
 		Scanner sc = new Scanner("-1");
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		assertThrows(IllegalArgumentException.class, () -> SUT.start());
 	}
 
+	// TODO pass non int input test
 }

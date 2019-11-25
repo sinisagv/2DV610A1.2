@@ -1,8 +1,13 @@
 package main.view;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 public class MenuView implements IView {
 	
 	private String menuTitle;
+	private LinkedHashMap<String, Runnable> options = new LinkedHashMap<String, Runnable>();
 	
 	public MenuView(String menuTitle) {
 		this.menuTitle = menuTitle;
@@ -10,8 +15,7 @@ public class MenuView implements IView {
 	
 	@Override
 	public void addOption(String optionName, Runnable action) {
-		// TODO Auto-generated method stub
-		
+		options.put(optionName, action);
 	}
 
 	@Override
@@ -20,9 +24,15 @@ public class MenuView implements IView {
 	}
 
 	@Override
-	public boolean executeOption(int selection) {
+	public void executeOption(int selection) {
+		List<Runnable> actions = new ArrayList<Runnable>(options.values());
+		actions.get(selection-1).run();
+	}
+
+	@Override
+	public int optionSize() {
 		// TODO Auto-generated method stub
-		return false;
+		return 0;
 	}
 
 }
