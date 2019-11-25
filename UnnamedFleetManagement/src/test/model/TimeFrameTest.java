@@ -1,4 +1,4 @@
-package tests;
+package test.model;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.TimeFrame;
+import main.model.TimeFrame;
 
 class TimeFrameTest {
 
