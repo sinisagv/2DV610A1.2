@@ -14,13 +14,13 @@ import main.view.MenuView;
 class MenuViewTest {
 
 	@Test
-	void should_show() {
+	void should_show_menuTitle() {
 		String testString = "TestMenu";
 		IView SUT = new MenuView(testString);
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		SUT.show();
-		assertEquals(testString + "\r\n", out.toString());
+		assertEquals(testString, out.toString().split("\r")[0]);
 	}
 
 }
