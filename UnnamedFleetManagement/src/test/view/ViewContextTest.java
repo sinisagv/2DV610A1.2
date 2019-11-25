@@ -55,21 +55,21 @@ class ViewContextTest {
 	@Test
 	void should_throw_exception_on_bad_input() {
 		IView mockedIView = mock(IView.class);
-		when(mockedIView.optionSize()).thenReturn(1); // returns value of  1 for size
+		when(mockedIView.optionSize()).thenReturn(1); // returns value of 1 for size
 
 		Scanner sc = new Scanner("-1");
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		assertThrows(IllegalArgumentException.class, () -> SUT.start());
 	}
-	
+
 	@Test
 	void should_catch_input_mismatch_exception() {
 		IView mockedIView = mock(IView.class);
-		Scanner sc = new Scanner("n");
+		Scanner sc = new Scanner("n\n1");
 		ViewContext SUT = new ViewContext(mockedIView, sc);
 		try {
-			SUT.start();
-		}catch(InputMismatchException e) {
+			assertThrows(IllegalArgumentException.class, () -> SUT.start());
+		} catch (InputMismatchException e) {
 			fail("Unhandled InputMismatchException");
 		}
 	}
