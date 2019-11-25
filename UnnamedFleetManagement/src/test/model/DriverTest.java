@@ -62,6 +62,13 @@ class DriverTest {
 		int expectedSize = 1;
 		assertEquals(sut.getQualifications().size(), expectedSize);
 	}
+	
+	@Test
+	void isAvailableShouldReturnTrue() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+		sut.addShift(new TimeFrame(sdf.parse("17/11/2019 08:00"), sdf.parse("18/11/2019 17:00")));
+		assertTrue(sut.isAvailable(new TimeFrameStub(sdf.parse("18/11/2019 08:00"), sdf.parse("19/11/2019 08:00"))));
+	}
 
 }
 
