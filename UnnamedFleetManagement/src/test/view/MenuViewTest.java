@@ -15,11 +15,12 @@ class MenuViewTest {
 
 	@Test
 	void should_show() {
-		IView SUT = new MenuView("TestMenu");
+		String testString = "TestMenu";
+		IView SUT = new MenuView(testString);
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		SUT.show();
-		assertEquals( "TestMenu\n", out.toString());
+		assertEquals(testString + "\r\n", out.toString());
 	}
 
 }

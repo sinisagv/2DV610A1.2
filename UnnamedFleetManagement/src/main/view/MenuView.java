@@ -2,8 +2,10 @@ package main.view;
 
 public class MenuView implements IView {
 	
+	private String menuTitle;
+	
 	public MenuView(String menuTitle) {
-		
+		this.menuTitle = menuTitle;
 	}
 	
 	@Override
@@ -14,8 +16,7 @@ public class MenuView implements IView {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		System.out.println(menuTitle);
 	}
 
 	@Override
