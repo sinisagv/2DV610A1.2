@@ -44,7 +44,7 @@ public class Driver {
 	
 	public boolean addShift(TimeFrame shift) {
 		for(TimeFrame tf: schedule) {
-			if(tf.overlapsWith(shift)) {
+			if(shift.overlapsWith(tf)) {
 				return false;
 			}
 		}
