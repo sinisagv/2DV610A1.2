@@ -1,13 +1,15 @@
 package test.model;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import main.model.Bus;
 import main.model.Fleet;
+import main.model.Vehicle;
+
 
 class FleetTest {
 	
@@ -27,8 +29,11 @@ class FleetTest {
 	}
 	
 	@Test
-	void shouldReturnTrueWhenRemovingVehicle() {
-		assertTrue(sut.removeVehicle(new Bus()));
+	void shouldReturnTrueWhenRemovingExistingVehicle() {
+		Vehicle b = new Bus();
+		sut.addVehicle(b);
+		assertTrue(sut.removeVehicle(b));
+		assertFalse(sut.removeVehicle(new Bus()));
 	}
 
 }
