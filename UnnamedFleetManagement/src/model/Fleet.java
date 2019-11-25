@@ -10,7 +10,7 @@ public class Fleet {
 	}
 	
 	public boolean removeVehicle(Vehicle v) {
-		return false;
+		return vehicles.remove(v);
 	}
 	
 	public boolean editVehicle(Vehicle v) {

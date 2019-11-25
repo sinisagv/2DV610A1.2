@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Bus;
 import model.Fleet;
+import model.Vehicle;
 
 class FleetTest {
 	
@@ -27,8 +28,10 @@ class FleetTest {
 	}
 	
 	@Test
-	void shouldReturnTrueWhenRemovingVehicle() {
-		assertTrue(sut.removeVehicle(new Bus()));
+	void shouldReturnTrueWhenRemovingExistingVehicle() {
+		Vehicle b = new Bus();
+		sut.addVehicle(b);
+		assertTrue(sut.removeVehicle(b));
 	}
 
 }
