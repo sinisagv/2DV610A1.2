@@ -3,25 +3,26 @@ package model;
 import java.util.ArrayList;
 
 public abstract class Vehicle {
-	private ArrayList<TimeFrame> unavailability = new ArrayList<TimeFrame>();
-	private CargoType cargoType;
-	private int capacity;
-	private int volume;
-	private VehicleType type;
-	private String ID;
+	protected ArrayList<TimeFrame> unavailability = new ArrayList<TimeFrame>();
+	protected CargoType cargoType;
+	protected int capacity;
+	protected int volume;
+	protected VehicleType type;
+	protected String ID;
 	
 	public Vehicle() {
 		super();
 	}
 	
 	
-	public Vehicle(ArrayList<TimeFrame> unavailability, CargoType cargoType, int capacity, int volume, VehicleType type) {
+	public Vehicle(ArrayList<TimeFrame> unavailability, CargoType cargoType, int capacity, int volume, VehicleType type, String ID) {
 		super();
 		this.unavailability = unavailability;
 		this.cargoType = cargoType;
 		this.capacity = capacity;
 		this.volume = volume;
-		this.setType(type);
+		this.type = type;
+		this.ID = ID;
 	}
 
 
