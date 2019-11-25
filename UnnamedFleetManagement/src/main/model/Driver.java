@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Driver {
 	private String name;
-	private ArrayList<Qualifications> qualifications = new ArrayList<Qualifications>();
+	private ArrayList<Qualification> qualifications = new ArrayList<Qualification>();
 	private ArrayList<TimeFrame> schedule = new ArrayList<TimeFrame>();
 
 	public Driver() {
 		super();
 	}
 
-	public Driver(String name, ArrayList<Qualifications> qualifications, ArrayList<TimeFrame> schedule) {
+	public Driver(String name, ArrayList<Qualification> qualifications, ArrayList<TimeFrame> schedule) {
 		super();
 		this.name = name;
 		this.qualifications = qualifications;
@@ -26,11 +26,11 @@ public class Driver {
 		this.name = name;
 	}
 
-	public ArrayList<Qualifications> getQualifications() {
+	public ArrayList<Qualification> getQualifications() {
 		return qualifications;
 	}
 
-	public void setQualifications(ArrayList<Qualifications> qualifications) {
+	public void setQualifications(ArrayList<Qualification> qualifications) {
 		this.qualifications = qualifications;
 	}
 
@@ -60,10 +60,10 @@ public class Driver {
 		return false;
 	}
 	
-	public boolean addQualification(Qualifications q) {
+	public boolean addQualification(Qualification q) {
 		return false;
 	}
-	public boolean removeQualifivation(Qualifications q) {
+	public boolean removeQualifivation(Qualification q) {
 		return false;
 	}
 	public boolean isAvailable(TimeFrame frame) {
