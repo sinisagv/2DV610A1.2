@@ -35,7 +35,7 @@ public class Booking {
 	}
 
 	public boolean removeDriver(Driver driver) {
-		return false;
+		return drivers.remove(driver);
 	}
 
 	public void setClient(Client client) {
