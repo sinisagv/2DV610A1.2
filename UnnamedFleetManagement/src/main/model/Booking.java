@@ -54,4 +54,12 @@ public class Booking {
 		return vehicles;
 	}
 
+	public TimeFrame getTimeFrame() {
+		return timeFrame;
+	}
+
+	public void setTimeFrame(TimeFrame timeFrame) {
+		this.timeFrame = timeFrame;
+	}
+
 }
