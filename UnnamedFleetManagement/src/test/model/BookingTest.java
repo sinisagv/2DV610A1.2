@@ -1,13 +1,16 @@
 package test.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import main.model.Booking;
+import main.model.Driver;
 import main.model.Vehicle;
 
 class BookingTest {
@@ -36,6 +39,15 @@ class BookingTest {
 		sut.addVehicle(mockVehicle);
 		assertTrue(sut.removeVehicle(mockVehicle));
 		assertFalse(sut.removeVehicle(mockVehicle));
+	}
+	
+	@Test
+	void addDriverShouldReturnTrueWhenVehicleIsAdded() {
+		Booking sut = new Booking();
+		Driver mockDriver = mock(Driver.class);
+		assertTrue(sut.addDriver(mockDriver));
+		assertFalse(sut.addDriver(mockDriver));
+		assertEquals(sut.getVehicles().size(), 1);
 	}
 
 }
