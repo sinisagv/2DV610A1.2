@@ -2,10 +2,12 @@ package main.view;
 
 public class ListMenuView implements IView {
 
+	private String listTitle;
+
 	public ListMenuView(String menuName) {
-		//TODO 
+		this.listTitle = menuName;
 	}
-	
+
 	@Override
 	public void addOption(String optionName, Runnable action) {
 		// TODO Auto-generated method stub
@@ -15,7 +17,8 @@ public class ListMenuView implements IView {
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		
+		StringBuffer sb = new StringBuffer(listTitle + "\n");
+		System.out.println(sb.toString());
 	}
 
 	@Override
