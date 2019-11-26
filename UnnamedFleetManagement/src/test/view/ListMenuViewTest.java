@@ -16,7 +16,7 @@ class ListMenuViewTest {
 	@Test
 	void should_show_list_title() {
 		String testString = "TestListMenu";
-		IView SUT = new ListMenuView(testString);
+		IView SUT = new ListMenuView(testString, null);
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		SUT.show();

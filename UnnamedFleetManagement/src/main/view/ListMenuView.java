@@ -1,11 +1,14 @@
 package main.view;
 
+import java.util.List;
+
 public class ListMenuView implements IView {
 
 	private String listTitle;
+	private List<String> listItems;
 
-	public ListMenuView(String menuName) {
-		this.listTitle = menuName;
+	public ListMenuView(String listTitle, List<String> listItems) {
+		this.listTitle = listTitle;
 	}
 
 	@Override
@@ -16,7 +19,6 @@ public class ListMenuView implements IView {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
 		StringBuffer sb = new StringBuffer(listTitle + "\n");
 		System.out.println(sb.toString());
 	}
