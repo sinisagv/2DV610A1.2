@@ -20,7 +20,7 @@ public class Booking {
 		return vehicles.add(vehicle);
 	}
 	public boolean removeVehicle(Vehicle vehicle) {
-		return false;
+		return vehicles.remove(vehicle);
 	}
 	public boolean addDriver(Driver driver) {
 		return false;
