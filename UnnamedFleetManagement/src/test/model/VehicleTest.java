@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import main.model.Bus;
 import main.model.TimeFrame;
 
-class BusTest {
+class VehicleTest {
 	Bus sut = new Bus();
 
 	@BeforeEach
@@ -30,16 +30,11 @@ class BusTest {
 	@Test
 	void addAunavailabiltyShouldReturnTrue() throws ParseException {
 		TimeFrame mockedTF = mock(TimeFrame.class);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-		when(mockedTF.overlapsWith(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019")))).thenReturn(false)
-				.thenReturn(true);
-		try {
-			assertTrue(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
-			assertFalse(sut.addUnvailability(new TimeFrame(sdf.parse("17/11/2019"), sdf.parse("22/11/2019"))));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		TimeFrame testTF = mock(TimeFrame.class);
+		when(mockedTF.overlapsWith(testTF)).thenReturn(true);
+
+		assertTrue(sut.addUnvailability(mockedTF));
+		assertFalse(sut.addUnvailability(testTF));
 	}
 
 	@Test

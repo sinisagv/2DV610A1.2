@@ -28,8 +28,8 @@ public class Booking {
 	public boolean removeDriver(Driver driver) {
 		return false;
 	}
-	public boolean addClient(Client client) {
-		return false;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 	public boolean removeClient(Client client) {
 		return false;
