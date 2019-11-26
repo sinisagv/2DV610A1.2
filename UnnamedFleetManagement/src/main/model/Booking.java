@@ -6,7 +6,7 @@ public class Booking {
 	private Client client;
 	private TimeFrame timeFrame;
 	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-	private ArrayList<Driver> drivers;
+	private ArrayList<Driver> drivers = new ArrayList<Driver>();
 
 	public ArrayList<Driver> getDrivers() {
 		return drivers;
@@ -26,7 +26,12 @@ public class Booking {
 	}
 
 	public boolean addDriver(Driver driver) {
-		return false;
+		for(Driver d : drivers) {
+			if(d.equals(driver)) {
+				return false;
+			}
+		}
+		return drivers.add(driver);
 	}
 
 	public boolean removeDriver(Driver driver) {

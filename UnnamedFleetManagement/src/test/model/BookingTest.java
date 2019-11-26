@@ -42,12 +42,12 @@ class BookingTest {
 	}
 	
 	@Test
-	void addDriverShouldReturnTrueWhenVehicleIsAdded() {
+	void addDriverShouldReturnTrueWhenDriverIsAdded() {
 		Booking sut = new Booking();
 		Driver mockDriver = mock(Driver.class);
 		assertTrue(sut.addDriver(mockDriver));
 		assertFalse(sut.addDriver(mockDriver));
-		assertEquals(sut.getVehicles().size(), 1);
+		assertEquals(sut.getDrivers().size(), 1);
 	}
 
 }
