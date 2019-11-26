@@ -21,7 +21,7 @@ public class ViewContext {
 		} catch (InputMismatchException e) {
 			selection = -1;
 		}
-		if (selection < 1 || selection > view.optionSize())
+		if (selection < 1 || selection > view.menuLength())
 			throw new IllegalArgumentException("Invalid Input");
 		view.executeOption(selection);
 	}
