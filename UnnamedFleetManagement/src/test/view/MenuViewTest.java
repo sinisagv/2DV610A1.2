@@ -63,5 +63,6 @@ class MenuViewTest {
 			String actual = out.toString().split("\n")[i+1];
 			assertEquals(((i+1) + ". " + expectedOptionName), actual);
 		}
+		
 	}
 }

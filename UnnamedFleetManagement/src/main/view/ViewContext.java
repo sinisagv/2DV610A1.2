@@ -5,15 +5,14 @@ import java.util.Scanner;
 
 public class ViewContext {
 
-	private IView view;
 	private Scanner input;
 
-	public ViewContext(IView primaryView, Scanner input) {
-		this.view = primaryView;
+	public ViewContext(Scanner input) {
 		this.input = input;
 	}
 
-	public void start() { // we only want to throw Illegal Argument Exception so the controller can handle it
+	public void showView(IView view) { // we only want to throw Illegal Argument Exception so the controller can handle
+							// it
 		view.show();
 		int selection = -1;
 		try {
@@ -21,13 +20,18 @@ public class ViewContext {
 		} catch (InputMismatchException e) {
 			selection = -1;
 		}
-		if (selection < 1 || selection > view.menuLength())
+		if (selection < 1 || selection > view.menuLength()) {
 			throw new IllegalArgumentException("Invalid Input");
+		}
 		view.executeOption(selection);
 	}
 
-	public void switchView(IView newView) {
-		this.view = newView;
-		start();
-	}
+	/*
+	 * public static void main(String[] args) { MenuView menu = new
+	 * MenuView("Testmenu"); ViewContext vc = new ViewContext(menu, new
+	 * Scanner(System.in));
+	 * 
+	 * menu.addOption("option 1", () -> vc.switchView(new MenuView("Option 1")));
+	 * vc.start(); }
+	 */
 }
