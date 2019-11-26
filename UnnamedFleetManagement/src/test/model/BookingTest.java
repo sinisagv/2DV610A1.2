@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,6 +46,7 @@ class BookingTest {
 	void addDriverShouldReturnTrueWhenDriverIsAdded() {
 		Booking sut = new Booking();
 		Driver mockDriver = mock(Driver.class);
+		when(mockDriver.equals(mockDriver)).thenReturn(true);
 		assertTrue(sut.addDriver(mockDriver));
 		assertFalse(sut.addDriver(mockDriver));
 		assertEquals(sut.getDrivers().size(), 1);

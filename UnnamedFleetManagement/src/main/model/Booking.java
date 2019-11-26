@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Booking {
 	private Client client;
 	private TimeFrame timeFrame;
+	private String ID;
 	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	private ArrayList<Driver> drivers = new ArrayList<Driver>();
 
@@ -60,6 +61,14 @@ public class Booking {
 
 	public void setTimeFrame(TimeFrame timeFrame) {
 		this.timeFrame = timeFrame;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
 	}
 
 }

@@ -6,12 +6,13 @@ public class Driver {
 	private String name;
 	private ArrayList<Qualification> qualifications = new ArrayList<Qualification>();
 	private ArrayList<TimeFrame> schedule = new ArrayList<TimeFrame>();
+	private String ID;
 
 	public Driver() {
 		super();
 	}
 
-	public Driver(String name, ArrayList<Qualification> qualifications, ArrayList<TimeFrame> schedule) {
+	public Driver(String ID, String name, ArrayList<Qualification> qualifications, ArrayList<TimeFrame> schedule) {
 		super();
 		this.name = name;
 		this.qualifications = qualifications;
@@ -85,6 +86,18 @@ public class Driver {
 			}
 		}
 		return true;
+	}
+	
+	public boolean equals(Driver driver) {
+		return false;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
 	}
 
 }
