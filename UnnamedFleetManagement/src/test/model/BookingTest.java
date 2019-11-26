@@ -49,5 +49,14 @@ class BookingTest {
 		assertFalse(sut.addDriver(mockDriver));
 		assertEquals(sut.getDrivers().size(), 1);
 	}
+	
+	@Test
+	void removeDriverShouldReturnTrue() {
+		Booking sut = new Booking();
+		Driver mockDriver = mock(Driver.class);
+		sut.addDriver(mockDriver);
+		assertTrue(sut.removeDriver(mockDriver));
+		assertFalse(sut.removeDriver(mockDriver));
+	}
 
 }
