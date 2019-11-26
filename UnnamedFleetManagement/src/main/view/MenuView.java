@@ -30,9 +30,10 @@ public class MenuView implements IView {
 	}
 
 	@Override
-	public void executeOption(int selection) {
+	public Runnable executeOption(int selection) {
 		List<Runnable> actions = new ArrayList<Runnable>(options.values());
-		actions.get(selection-1).run();
+		
+		return actions.get(selection - 1);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package test.view;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
@@ -10,6 +11,7 @@ import static org.mockito.Mockito.when;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
@@ -24,6 +26,8 @@ class ViewContextTest {
 	void start_should_show_first_view() {
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1);
+		when(mockedIView.executeOption(1)).thenReturn(() -> {
+		});
 		ViewContext SUT = new ViewContext(new Scanner("1"));
 		SUT.showView(mockedIView);
 		verify(mockedIView).show();
@@ -35,6 +39,10 @@ class ViewContextTest {
 		IView testView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1);
 		when(testView.menuLength()).thenReturn(1);
+		when(mockedIView.executeOption(1)).thenReturn(() -> {
+		});
+		when(testView.executeOption(1)).thenReturn(() -> {
+		});
 
 		ViewContext SUT = new ViewContext(new Scanner("1"));
 		SUT.showView(testView);
@@ -47,10 +55,12 @@ class ViewContextTest {
 												// always be 1 and call executeOption with that input)
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1);
+		when(mockedIView.executeOption(1)).thenReturn(() -> {
+		});
 
 		Scanner sc = new Scanner("1");
 
-		ViewContext SUT = new ViewContext( sc);
+		ViewContext SUT = new ViewContext(sc);
 		SUT.showView(mockedIView);
 		verify(mockedIView, times(1)).executeOption(1);
 	}
@@ -59,15 +69,19 @@ class ViewContextTest {
 	void should_throw_exception_on_bad_input() {
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1); // returns value of 1 for size
+		when(mockedIView.executeOption(1)).thenReturn(() -> {
+		});
 
 		Scanner sc = new Scanner("-1");
-		ViewContext SUT = new ViewContext( sc);
+		ViewContext SUT = new ViewContext(sc);
 		assertThrows(IllegalArgumentException.class, () -> SUT.showView(mockedIView));
 	}
 
 	@Test
 	void should_catch_input_mismatch_exception() {
 		IView mockedIView = mock(IView.class);
+		when(mockedIView.executeOption(1)).thenReturn(() -> {
+		});
 		Scanner sc = new Scanner("n\n1");
 		ViewContext SUT = new ViewContext(sc);
 		try {
@@ -77,5 +91,5 @@ class ViewContextTest {
 		}
 	}
 
-	
+
 }
