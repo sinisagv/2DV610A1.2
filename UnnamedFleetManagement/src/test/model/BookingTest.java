@@ -28,5 +28,14 @@ class BookingTest {
 		assertFalse(sut.addVehicle(mockVehicle));
 		assertEquals(sut.getVehicles().size(), 1);
 	}
+	
+	@Test
+	void removeVehicleShouldReturnTrueWhenVehicleIsRemoved() {
+		Booking sut = new Booking();
+		Vehicle mockVehicle = mock(Vehicle.class);
+		sut.addVehicle(mockVehicle);
+		assertTrue(sut.removeVehicle(mockVehicle));
+		assertFalse(sut.removeVehicle(mockVehicle));
+	}
 
 }
