@@ -7,7 +7,6 @@ public class FormView  {
 	ArrayList<String> prompts = new ArrayList<String>();
 	
 	public void show(int promptIndex) {
-		
 	}
 
 	public void addPrompt(String prompt) {
