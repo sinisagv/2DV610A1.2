@@ -31,8 +31,7 @@ class MenuViewTest {
 		IView SUT = new MenuView("test");
 		Runnable mockRunnable = mock(Runnable.class);
 		SUT.addOption("testOption", mockRunnable);
-		SUT.executeOption(1);
-		verify(mockRunnable).run();
+		assertEquals(SUT.executeOption(1), mockRunnable);
 	}
 
 	@Test
