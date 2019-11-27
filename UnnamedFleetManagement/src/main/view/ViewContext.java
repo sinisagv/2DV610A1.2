@@ -33,36 +33,7 @@ public class ViewContext {
 	}
 
 /*	public static void main(String[] args) {
-		try {
-			IView mockedView = new MenuView("Test1");
-			IView mockedView2 = new MenuView("Test2");
-			int testno = 1000000000;
-			byte[] test = new byte[testno];
-			for (int i = 0; i < testno; i++) {
-				if (i % 2 == 0)
-					test[i] = '1';
-				else
-					test[i] = '\r';
-			}
-			InputStream teststream = new ByteArrayInputStream(test);
-
-			System.setIn(teststream);
-			Scanner sc = new Scanner(System.in);
-			ViewContext SUT = new ViewContext(sc);
-
-			mockedView.addOption("test one", () -> SUT.showView(mockedView2));
-			mockedView2.addOption("test two", () -> SUT.showView(mockedView));
-
-			int i = 0;
-			while (true) {
-				SUT.showView(mockedView).run();
-				System.out.println(i++);
-			}
-		} catch (NoSuchElementException e) {
-			assertTrue(true);
-		} catch (IllegalArgumentException e) {
-			assertTrue(true);
-		}
+		
 	}*/
 
 }

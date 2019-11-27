@@ -21,27 +21,27 @@ class ListMenuViewTest {
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		SUT.show();
-		String actual =  out.toString().split("\n")[0];
+		String actual = out.toString().split("\n")[0];
 		assertEquals(testString, actual);
 	}
-	
+
 	@Test
 	void should_show_list_items() {
 		String testString = "TestListOptions";
 		ArrayList<String> testArrayList = new ArrayList<String>();
-		for(int i = 1; i < 100; i++) {
+		for (int i = 1; i < 100; i++) {
 			testArrayList.add(testString + i);
 		}
 		IView SUT = new ListMenuView(testString, testArrayList);
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		SUT.show();
-		String[] actual =  out.toString().split("\n");
+		String[] actual = out.toString().split("\n");
 		assertEquals(testString, actual[0]);
-		for(int i = 1; i < 100; i++) {
+		for (int i = 1; i < 100; i++) {
 			assertEquals(testString + i, actual[i]);
 		}
-		
+
 	}
 
 }
