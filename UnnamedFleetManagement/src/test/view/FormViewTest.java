@@ -30,6 +30,9 @@ class FormViewTest {
 		SUT.addPrompt("test");
 		SUT.addPrompt("test1");
 		SUT.addPrompt("test2");
+		SUT.show(0);
+		SUT.show(1);
+		SUT.show(2);
 		assertEquals("test", testOut.toString().split("\n")[0]);
 		assertEquals("test1", testOut.toString().split("\n")[1]);
 		assertEquals("test2", testOut.toString().split("\n")[2]);
