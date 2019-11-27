@@ -1,5 +1,6 @@
 package test.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
@@ -24,6 +25,12 @@ class VehicleDBServiceTest {
 		VehicleDBService sut = new VehicleDBService();
 		assertTrue(sut.addVehicle(new Vehicle()));
 		//assertEquals(sut.getFleet().size(), 1);
+	}
+	
+	@Test
+	void writeShouldReturnTrue() throws Exception {
+		VehicleDBService sut = new VehicleDBService();
+		assertTrue(sut.write());
 	}
 
 }
