@@ -11,11 +11,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.model.Bus;
 import main.model.TimeFrame;
+import main.model.Vehicle;
 
 class VehicleTest {
-	Bus sut = new Bus();
+	Vehicle sut = new Vehicle();
 
 	@BeforeEach
 	void setUp() throws Exception {

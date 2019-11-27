@@ -2,7 +2,7 @@ package main.model;
 
 import java.util.ArrayList;
 
-public abstract class Vehicle {
+public class Vehicle {
 	protected ArrayList<TimeFrame> schedule = new ArrayList<TimeFrame>();
 	protected CargoType cargoType;
 	protected int capacity;

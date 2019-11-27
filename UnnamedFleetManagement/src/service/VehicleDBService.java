@@ -1,14 +1,8 @@
 package service;
 
-import java.io.File;
-import java.lang.reflect.Member;
-import java.util.Random;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.UUID;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 
 import main.model.Fleet;
 import main.model.Vehicle;
@@ -30,19 +24,24 @@ public class VehicleDBService implements IDBService {
 	}
 
 	@Override
-	public void write() {
+	public boolean write() {
 		// TODO Auto-generated method stub
-
+		return false;
 	}
 	
 	public boolean addVehicle(Vehicle vehicle) {
 		if (vehicle.getID() == null || vehicle.getID() == "") {
-			vehicle.setID("0");
+			vehicle.setID(generateID());
 		}
-		write();
-		return vehicles.addVehicle(vehicle);
+		
+		return vehicles.addVehicle(vehicle) && write();
 	}
 	
+	private String generateID() {
+		// TODO Auto-generated method stub
+		return UUID.randomUUID().toString();
+	}
+
 	public boolean removeVehicle(Vehicle vehicle) {
 		return false;
 	}
@@ -50,5 +49,7 @@ public class VehicleDBService implements IDBService {
 	public Fleet getFleet() {
 		return this.vehicles;
 	}
+	
+	
 
 }

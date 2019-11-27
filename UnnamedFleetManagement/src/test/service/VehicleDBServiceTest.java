@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.model.Bus;
+import main.model.Vehicle;
 import service.VehicleDBService;
 
 class VehicleDBServiceTest {
@@ -22,7 +22,7 @@ class VehicleDBServiceTest {
 	@Test
 	void addVehicleShouldReturnTrue() throws Exception {
 		VehicleDBService sut = new VehicleDBService();
-		assertTrue(sut.addVehicle(new Bus()));
+		assertTrue(sut.addVehicle(new Vehicle()));
 		//assertEquals(sut.getFleet().size(), 1);
 	}
 
