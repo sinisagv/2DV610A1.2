@@ -1,5 +1,7 @@
 package main.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ViewContext {
@@ -10,15 +12,22 @@ public class ViewContext {
 		this.input = input;
 	}
 
-	public Runnable showView(IView view) { // we only want to throw Illegal Argument Exception so the controller can
-											// handle
-		// it
+	public Runnable showView(IView view) { 
 		view.show();
 		while (!input.hasNextInt())
 			// TODO add class for printing user errors
 			input.next();
 		int selection = input.nextInt();
 		return view.executeOption(selection);
+	}
+
+	public List<String> showForm(FormView formView) {
+		ArrayList<String> out = new ArrayList<String>();
+		for(int i = 0; i < formView.size(); i++) {
+			formView.show(i);
+			out.add(input.nextLine());
+		}
+		return out;
 	}
 
 	/*

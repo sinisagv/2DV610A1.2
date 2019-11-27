@@ -1,16 +1,18 @@
 package test.view;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
+import main.view.FormView;
 import main.view.IView;
 import main.view.ViewContext;
 
@@ -40,7 +42,7 @@ class ViewContextTest {
 
 		ViewContext SUT = new ViewContext(new Scanner("1"));
 		SUT.showView(testView);
-		verify(testView, times(1)).show(); // checks that show() is called on the first option of menu 1
+		verify(testView).show(); // checks that show() is called on the first option of menu 1
 
 	}
 
@@ -56,7 +58,7 @@ class ViewContextTest {
 
 		ViewContext SUT = new ViewContext(sc);
 		SUT.showView(mockedIView);
-		verify(mockedIView, times(1)).executeOption(1);
+		verify(mockedIView).executeOption(1);
 	}
 
 	// Changed input to check if inputstream has int as the next token. no longer
@@ -86,5 +88,28 @@ class ViewContextTest {
 			fail("Unhandled InputMismatchException");
 		}
 	}
+	
+	@Test
+	void should_show_form_view() {
+		FormView mockedFormView = mock(FormView.class);
+		when(mockedFormView.size()).thenReturn(3);
+		ViewContext SUT = new ViewContext(new Scanner("test\ntest\ntest\n"));
+		SUT.showForm(mockedFormView);
+		verify(mockedFormView).show(0);
+		verify(mockedFormView).show(1);
+		verify(mockedFormView).show(2);
+	}
+	
+	@Test
+	void should_get_form_inputs() {
+		FormView mockedFormView = mock(FormView.class);
+		when(mockedFormView.size()).thenReturn(3);
+		ViewContext SUT = new ViewContext(new Scanner("test0\ntest1\ntest2\n"));
+		List<String> actual = SUT.showForm(mockedFormView);
+		for(int i = 0; i < actual.size(); i++) {
+			assertEquals("test" + i, actual.get(i));
+		}
+	}
+	
 
 }
