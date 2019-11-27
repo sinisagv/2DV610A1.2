@@ -18,8 +18,6 @@ import main.model.Qualification;
 import main.model.TimeFrame;
 
 class DriverTest {
-	
-	
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -39,7 +37,7 @@ class DriverTest {
 		assertTrue(sut.addShift(mockTF));
 		assertFalse(sut.addShift(testTF));
 	}
-	
+
 	@Test
 	void removeShiftShouldReturnTrue() throws ParseException {
 		Driver sut = new Driver();
@@ -50,7 +48,7 @@ class DriverTest {
 		int expectedSize = 0;
 		assertEquals(sut.getSchedule().size(), expectedSize);
 	}
-	
+
 	@Test
 	void addQualificationShouldReturnTrue() {
 		Driver sut = new Driver();
@@ -60,7 +58,7 @@ class DriverTest {
 		int expectedSize = 2;
 		assertEquals(sut.getQualifications().size(), expectedSize);
 	}
-	
+
 	@Test
 	void removeQualificationsShouldReturnTrue() {
 		Driver sut = new Driver();
@@ -72,7 +70,7 @@ class DriverTest {
 		int expectedSize = 1;
 		assertEquals(sut.getQualifications().size(), expectedSize);
 	}
-	
+
 	@Test
 	void isAvailableShouldReturnTrue() throws ParseException {
 		Driver sut = new Driver();
@@ -84,11 +82,16 @@ class DriverTest {
 		assertEquals(sut.getSchedule().size(), 1);
 		assertTrue(sut.isAvailable(testFrame));
 		assertFalse(sut.isAvailable(testFrame));
-		
-		
-		
-		
+
+	}
+	
+	@Test
+	void equalsShouldReturnTrueIfIDsAreEqual() {
+		Driver sut = new Driver();
+		Driver testDriver = new Driver();
+		sut.setID("1");
+		testDriver.setID("1");
+		assertTrue(sut.equals(testDriver));
 	}
 
 }
-

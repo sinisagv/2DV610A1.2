@@ -89,7 +89,7 @@ public class Driver {
 	}
 	
 	public boolean equals(Driver driver) {
-		return false;
+		return this.ID.equalsIgnoreCase(driver.getID());
 	}
 
 	public String getID() {
