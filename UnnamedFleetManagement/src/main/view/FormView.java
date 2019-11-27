@@ -15,7 +15,6 @@ public class FormView  {
 	}
 
 	public int size() {
-		// TODO Auto-generated method stub
 		return prompts.size();
 	}
 

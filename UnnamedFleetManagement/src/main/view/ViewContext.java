@@ -16,19 +16,17 @@ public class ViewContext {
 		// it
 		view.show();
 		int selection = -1;
-		try {
-			selection = input.nextInt();
-		} catch (InputMismatchException e) {
-			selection = -1;
-		}
-		if (selection < 1 || selection > view.menuLength()) {
-			throw new IllegalArgumentException("Invalid Input");
-		}
+		while (!input.hasNextInt())
+			// TODO add class for printing user errors
+			input.next();
+		selection = input.nextInt();
 		return view.executeOption(selection);
 	}
 
-/*	public static void main(String[] args) {
-		
-	}*/
+	/*
+	 * public static void main(String[] args) {
+	 * 
+	 * }
+	 */
 
 }

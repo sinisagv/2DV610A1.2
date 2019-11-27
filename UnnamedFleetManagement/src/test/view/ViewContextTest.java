@@ -1,7 +1,6 @@
 package test.view;
 
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -60,17 +59,17 @@ class ViewContextTest {
 		verify(mockedIView, times(1)).executeOption(1);
 	}
 
-	@Test
-	void should_throw_exception_on_bad_input() {
-		IView mockedIView = mock(IView.class);
-		when(mockedIView.menuLength()).thenReturn(1); // returns value of 1 for size
-		when(mockedIView.executeOption(1)).thenReturn(() -> {
-		});
-
-		Scanner sc = new Scanner("-1");
-		ViewContext SUT = new ViewContext(sc);
-		assertThrows(IllegalArgumentException.class, () -> SUT.showView(mockedIView));
-	}
+	// Changed input to check if inputstream has int as the next token. no longer
+	// throws exceptions
+	/*
+	 * @Test void should_throw_exception_on_bad_input() { IView mockedIView =
+	 * mock(IView.class); when(mockedIView.menuLength()).thenReturn(1); // returns
+	 * value of 1 for size when(mockedIView.executeOption(1)).thenReturn(() -> { });
+	 * 
+	 * Scanner sc = new Scanner("-1"); ViewContext SUT = new ViewContext(sc);
+	 * assertThrows(IllegalArgumentException.class, () ->
+	 * SUT.showView(mockedIView)); }
+	 */
 
 	@Test
 	void should_catch_input_mismatch_exception() {
@@ -80,7 +79,9 @@ class ViewContextTest {
 		Scanner sc = new Scanner("n\n1");
 		ViewContext SUT = new ViewContext(sc);
 		try {
-			assertThrows(IllegalArgumentException.class, () -> SUT.showView(mockedIView));
+			// removed this assert since ViewContext.showView() can no longer throw exceptions
+			//assertThrows(IllegalArgumentException.class, () -> SUT.showView(mockedIView));
+			SUT.showView(mockedIView);
 		} catch (InputMismatchException e) {
 			fail("Unhandled InputMismatchException");
 		}
