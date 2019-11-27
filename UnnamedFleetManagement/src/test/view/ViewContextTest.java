@@ -1,5 +1,6 @@
 package test.view;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -7,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
@@ -99,6 +101,16 @@ class ViewContextTest {
 		verify(mockedFormView).show(2);
 	}
 	
+	@Test
+	void should_get_form_inputs() {
+		FormView mockedFormView = mock(FormView.class);
+		when(mockedFormView.size()).thenReturn(3);
+		ViewContext SUT = new ViewContext(new Scanner("test0 test1 test2"));
+		List<String> actual = SUT.showForm(mockedFormView);
+		for(int i = 0; i < actual.size(); i++) {
+			assertEquals("test" + i, actual.get(i));
+		}
+	}
 	
 
 }

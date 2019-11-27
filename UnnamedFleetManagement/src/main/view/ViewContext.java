@@ -20,11 +20,11 @@ public class ViewContext {
 		return view.executeOption(selection);
 	}
 
-	public void showForm(FormView formView) {
+	public List<String> showForm(FormView formView) {
 		for(int i = 0; i < formView.size(); i++) {
 			formView.show(i);
 		}
-		
+		return null;
 	}
 
 	/*
