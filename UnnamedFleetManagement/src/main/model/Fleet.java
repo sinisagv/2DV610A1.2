@@ -1,8 +1,9 @@
 package main.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Fleet {
+public class Fleet implements Iterable<Vehicle>{
 	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	public boolean addVehicle(Vehicle vehicle) {
@@ -20,5 +21,14 @@ public class Fleet {
 			}
 		}
 		return false;
+	}
+	
+	public int size() {
+		return this.vehicles.size();
+	}
+
+	@Override
+	public Iterator<Vehicle> iterator() {
+		return vehicles.iterator();
 	}
 }

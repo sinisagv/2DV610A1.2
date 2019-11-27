@@ -30,7 +30,6 @@ class DriverTest {
 	@Test
 	void addShiftShouldReturnTrueWhenNewShiftIsAdded() throws ParseException {
 		Driver sut = new Driver();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
 		TimeFrame mockTF = mock(TimeFrame.class);
 		TimeFrame testTF = mock(TimeFrame.class);
 		when(mockTF.overlapsWith(testTF)).thenReturn(true);
@@ -74,7 +73,6 @@ class DriverTest {
 	@Test
 	void isAvailableShouldReturnTrue() throws ParseException {
 		Driver sut = new Driver();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy hh:mm");
 		TimeFrame mockedTF = mock(TimeFrame.class);
 		TimeFrame testFrame = mock(TimeFrame.class);
 		sut.addShift(mockedTF);
