@@ -3,7 +3,6 @@ package test.view;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -43,7 +42,7 @@ class ViewContextTest {
 
 		ViewContext SUT = new ViewContext(new Scanner("1"));
 		SUT.showView(testView);
-		verify(testView, times(1)).show(); // checks that show() is called on the first option of menu 1
+		verify(testView).show(); // checks that show() is called on the first option of menu 1
 
 	}
 
@@ -59,7 +58,7 @@ class ViewContextTest {
 
 		ViewContext SUT = new ViewContext(sc);
 		SUT.showView(mockedIView);
-		verify(mockedIView, times(1)).executeOption(1);
+		verify(mockedIView).executeOption(1);
 	}
 
 	// Changed input to check if inputstream has int as the next token. no longer
