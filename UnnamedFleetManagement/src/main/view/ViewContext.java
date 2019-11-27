@@ -11,9 +11,7 @@ public class ViewContext {
 		this.input = input;
 	}
 
-	public Runnable showView(IView view) { // we only want to throw Illegal Argument Exception so the controller can
-											// handle
-		// it
+	public Runnable showView(IView view) { 
 		view.show();
 		while (!input.hasNextInt())
 			// TODO add class for printing user errors
@@ -22,11 +20,11 @@ public class ViewContext {
 		return view.executeOption(selection);
 	}
 
-	public List<String> showForm(FormView formView) {
+	public void showForm(FormView formView) {
 		for(int i = 0; i < formView.size(); i++) {
 			formView.show(i);
 		}
-		return null;
+		
 	}
 
 	/*
