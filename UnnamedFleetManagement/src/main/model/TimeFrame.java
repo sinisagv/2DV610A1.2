@@ -12,7 +12,7 @@ public class TimeFrame {
 	}
 
 	public TimeFrame() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Date getEndDate() {
