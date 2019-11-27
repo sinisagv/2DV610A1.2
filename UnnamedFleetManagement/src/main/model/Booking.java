@@ -5,32 +5,70 @@ import java.util.ArrayList;
 public class Booking {
 	private Client client;
 	private TimeFrame timeFrame;
-	private ArrayList<Vehicle> vehicles;
-	private ArrayList<Driver> drivers;
-	
+	private String ID;
+	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+	private ArrayList<Driver> drivers = new ArrayList<Driver>();
+
 	public ArrayList<Driver> getDrivers() {
 		return drivers;
 	}
+
 	public boolean addVehicle(Vehicle vehicle) {
-		return false;
+		for (Vehicle v : vehicles) {
+			if (v.equals(vehicle)) {
+				return false;
+			}
+		}
+		return vehicles.add(vehicle);
 	}
+
 	public boolean removeVehicle(Vehicle vehicle) {
-		return false;
+		return vehicles.remove(vehicle);
 	}
+
 	public boolean addDriver(Driver driver) {
-		return false;
+		for(Driver d : drivers) {
+			if(d.equals(driver)) {
+				return false;
+			}
+		}
+		return drivers.add(driver);
 	}
+
 	public boolean removeDriver(Driver driver) {
-		return false;
+		return drivers.remove(driver);
 	}
-	public boolean addClient(Client client) {
-		return false;
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
+
+	public Client getClient() {
+		return this.client;
+	}
+
 	public boolean removeClient(Client client) {
 		return false;
 	}
+
 	public ArrayList<Vehicle> getVehicles() {
 		return vehicles;
 	}
-	
+
+	public TimeFrame getTimeFrame() {
+		return timeFrame;
+	}
+
+	public void setTimeFrame(TimeFrame timeFrame) {
+		this.timeFrame = timeFrame;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
 }
