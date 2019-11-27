@@ -9,6 +9,7 @@ public class ListMenuView implements IView {
 
 	public ListMenuView(String listTitle, List<String> listItems) {
 		this.listTitle = listTitle;
+		this.listItems = listItems;
 	}
 
 	@Override
@@ -20,7 +21,10 @@ public class ListMenuView implements IView {
 	@Override
 	public void show() {
 		StringBuffer sb = new StringBuffer(listTitle + "\n");
-		System.out.println(sb.toString());
+		for(String str : listItems) {
+			sb.append(str + "\n");
+		}
+		System.out.print(sb.toString());
 	}
 
 	@Override
