@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import main.model.CargoType;
 import main.model.Vehicle;
-import service.VehicleDBService;
+import main.service.VehicleDBService;
 
 class VehicleDBServiceTest {
 

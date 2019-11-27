@@ -1,4 +1,4 @@
-package service;
+package main.service;
 
 import java.io.File;
 import java.util.UUID;
