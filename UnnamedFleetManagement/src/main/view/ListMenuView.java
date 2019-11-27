@@ -11,11 +11,6 @@ public class ListMenuView extends MenuView implements IView {
 		this.listItems = listItems;
 	}
 
-	@Override
-	public void addOption(String optionName, Runnable action) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void show() {
@@ -26,16 +21,6 @@ public class ListMenuView extends MenuView implements IView {
 		System.out.print(sb.toString());
 	}
 
-	@Override
-	public Runnable executeOption(int selection) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int menuLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 }
