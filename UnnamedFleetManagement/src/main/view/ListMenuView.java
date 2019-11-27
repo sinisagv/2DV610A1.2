@@ -20,7 +20,9 @@ public class ListMenuView extends MenuView implements IView {
 	@Override
 	public void show() {
 		StringBuffer sb = new StringBuffer(this.menuTitle + "\n");
-		
+		for(String str : listItems) {
+			sb.append(str + "\n");
+		}
 		System.out.print(sb.toString());
 	}
 
