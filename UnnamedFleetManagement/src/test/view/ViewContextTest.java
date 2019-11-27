@@ -94,7 +94,7 @@ class ViewContextTest {
 	void should_show_form_view() {
 		FormView mockedFormView = mock(FormView.class);
 		when(mockedFormView.size()).thenReturn(3);
-		ViewContext SUT = new ViewContext(new Scanner("test test test"));
+		ViewContext SUT = new ViewContext(new Scanner("test\ntest\ntest\n"));
 		SUT.showForm(mockedFormView);
 		verify(mockedFormView).show(0);
 		verify(mockedFormView).show(1);
@@ -105,7 +105,7 @@ class ViewContextTest {
 	void should_get_form_inputs() {
 		FormView mockedFormView = mock(FormView.class);
 		when(mockedFormView.size()).thenReturn(3);
-		ViewContext SUT = new ViewContext(new Scanner("test0 test1 test2"));
+		ViewContext SUT = new ViewContext(new Scanner("test0\ntest1\ntest2\n"));
 		List<String> actual = SUT.showForm(mockedFormView);
 		for(int i = 0; i < actual.size(); i++) {
 			assertEquals("test" + i, actual.get(i));

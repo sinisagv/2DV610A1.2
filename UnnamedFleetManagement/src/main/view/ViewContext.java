@@ -1,5 +1,6 @@
 package main.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,10 +22,12 @@ public class ViewContext {
 	}
 
 	public List<String> showForm(FormView formView) {
+		ArrayList<String> out = new ArrayList<String>();
 		for(int i = 0; i < formView.size(); i++) {
 			formView.show(i);
+			out.add(input.nextLine());
 		}
-		return null;
+		return out;
 	}
 
 	/*
