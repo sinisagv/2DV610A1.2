@@ -1,9 +1,8 @@
 package test.view;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -23,7 +22,7 @@ class MenuViewTest {
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
 		SUT.show();
-		String actual =  out.toString().split("\n")[0];
+		String actual = out.toString().split("\n")[0];
 		assertEquals(testString, actual);
 	}
 
@@ -60,9 +59,9 @@ class MenuViewTest {
 		System.setOut(new PrintStream(out));
 		SUT.show();
 		for (int i = 0; i < SUT.menuLength(); i++) {
-			String actual = out.toString().split("\n")[i+1];
-			assertEquals(((i+1) + ". " + expectedOptionName), actual);
+			String actual = out.toString().split("\n")[i + 1];
+			assertEquals(((i + 1) + ". " + expectedOptionName), actual);
 		}
-		
+
 	}
 }

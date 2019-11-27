@@ -1,6 +1,5 @@
 package main.view;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ViewContext {
@@ -15,11 +14,10 @@ public class ViewContext {
 											// handle
 		// it
 		view.show();
-		int selection = -1;
 		while (!input.hasNextInt())
 			// TODO add class for printing user errors
 			input.next();
-		selection = input.nextInt();
+		int selection = input.nextInt();
 		return view.executeOption(selection);
 	}
 

@@ -23,7 +23,7 @@ class FormViewTest {
 	}
 
 	@Test
-	void should_displayPrompt() {
+	void should_display_prompt() {
 		FormView SUT = new FormView();
 		OutputStream testOut = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(testOut));
