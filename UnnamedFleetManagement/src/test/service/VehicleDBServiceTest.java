@@ -1,6 +1,7 @@
 package test.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedWriter;
@@ -23,8 +24,7 @@ class VehicleDBServiceTest {
 	void setUp() throws Exception {
 		BufferedWriter writer = Files.newBufferedWriter(Paths.get("src/test/service/testFile.xml"));
 		writer.write("");
-		writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + 
-				"<root></root>");
+		writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + "<root></root>");
 		writer.flush();
 	}
 
@@ -40,9 +40,8 @@ class VehicleDBServiceTest {
 		v.setCargoType(CargoType.PASSENGERS);
 		v.setVolume(20);
 		assertTrue(sut.addVehicle(v));
-		assertEquals(sut.getFleet().size(), 1);
 	}
-	
+
 	@Test
 	void writeShouldReturnTrue() throws Exception {
 		VehicleDBService sut = new VehicleDBService("src/test/service/testFile.xml");
@@ -50,7 +49,7 @@ class VehicleDBServiceTest {
 		File db = new File("src/test/service/testFile.xml");
 		Scanner sc = new Scanner(db);
 		int lines = 0;
-		while(sc.hasNextLine()) {
+		while (sc.hasNextLine()) {
 			sc.nextLine();
 			lines++;
 		}

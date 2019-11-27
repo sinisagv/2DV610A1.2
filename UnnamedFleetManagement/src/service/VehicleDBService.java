@@ -51,6 +51,32 @@ public class VehicleDBService implements IDBService {
 
 		}
 	}
+	
+	public VehicleDBService() throws Exception {
+
+		File data = new File(dbPath);
+		DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
+		dataDoc = documentBuilder.parse(data);
+
+		NodeList vehicleNodes = dataDoc.getElementsByTagName("vehicle");
+
+		for (int i = 0; i < vehicleNodes.getLength(); i++) {
+			String tempFName = dataDoc.getElementsByTagName("capacity").item(i).getTextContent();
+			String tempLName = dataDoc.getElementsByTagName("volume").item(i).getTextContent();
+			String tempID = dataDoc.getElementsByTagName("ID").item(i).getTextContent();
+			String tempPersonNo = dataDoc.getElementsByTagName("cargo").item(i).getTextContent();
+			Vehicle tempVehicle = new Vehicle();
+
+			tempVehicle.setCapacity(Integer.parseInt(tempFName));
+			tempVehicle.setVolume(Integer.parseInt(tempLName));
+			tempVehicle.setID(tempID);
+			tempVehicle.setCargoType(Enum.valueOf(CargoType.class, tempPersonNo));
+
+			vehicles.addVehicle(tempVehicle);
+
+		}
+	}
 
 	@Override
 	public void read() {
