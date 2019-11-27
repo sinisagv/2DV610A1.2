@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MenuView implements IView {
 	
-	private String menuTitle;
+	protected String menuTitle;
 	private LinkedHashMap<String, Runnable> options = new LinkedHashMap<String, Runnable>();
 	
 	public MenuView(String menuTitle) {

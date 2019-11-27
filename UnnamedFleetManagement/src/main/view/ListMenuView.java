@@ -2,13 +2,12 @@ package main.view;
 
 import java.util.List;
 
-public class ListMenuView implements IView {
+public class ListMenuView extends MenuView implements IView {
 
-	private String listTitle;
 	private List<String> listItems;
 
 	public ListMenuView(String listTitle, List<String> listItems) {
-		this.listTitle = listTitle;
+		super(listTitle);
 		this.listItems = listItems;
 	}
 
@@ -20,10 +19,8 @@ public class ListMenuView implements IView {
 
 	@Override
 	public void show() {
-		StringBuffer sb = new StringBuffer(listTitle + "\n");
-		for(String str : listItems) {
-			sb.append(str + "\n");
-		}
+		StringBuffer sb = new StringBuffer(this.menuTitle + "\n");
+		
 		System.out.print(sb.toString());
 	}
 

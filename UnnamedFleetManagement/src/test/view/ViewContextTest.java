@@ -1,6 +1,5 @@
 package test.view;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
@@ -8,16 +7,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
 import main.view.IView;
-import main.view.MenuView;
 import main.view.ViewContext;
 
 class ViewContextTest {
@@ -90,6 +85,5 @@ class ViewContextTest {
 			fail("Unhandled InputMismatchException");
 		}
 	}
-
 
 }
