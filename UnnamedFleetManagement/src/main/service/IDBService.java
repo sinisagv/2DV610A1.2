@@ -1,4 +1,4 @@
-package service;
+package main.service;
 
 public interface IDBService {
 	 void read();

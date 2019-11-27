@@ -7,6 +7,11 @@ public class Fleet implements Iterable<Vehicle>{
 	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 	public boolean addVehicle(Vehicle vehicle) {
+		for(Vehicle v : vehicles) {
+			if(v.getID().equals(vehicle.getID())) {
+				return false;
+			}
+		}
 		return vehicles.add(vehicle);
 	}
 	
