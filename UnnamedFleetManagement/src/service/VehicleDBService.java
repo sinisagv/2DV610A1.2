@@ -2,6 +2,7 @@ package service;
 
 import java.io.File;
 import java.lang.reflect.Member;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -35,7 +36,11 @@ public class VehicleDBService implements IDBService {
 	}
 	
 	public boolean addVehicle(Vehicle vehicle) {
-		return false;
+		if (vehicle.getID() == null || vehicle.getID() == "") {
+			vehicle.setID("0");
+		}
+		write();
+		return vehicles.addVehicle(vehicle);
 	}
 	
 	public boolean removeVehicle(Vehicle vehicle) {
