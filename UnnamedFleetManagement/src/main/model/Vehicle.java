@@ -7,7 +7,7 @@ public abstract class Vehicle {
 	protected CargoType cargoType;
 	protected int capacity;
 	protected int volume;
-
+	
 	protected String ID;
 
 	public Vehicle() {
