@@ -23,7 +23,9 @@ public class ViewContext {
 	}
 
 	public List<String> showForm(FormView formView) {
-		// TODO Auto-generated method stub
+		for(int i = 0; i < formView.size(); i++) {
+			formView.show(i);
+		}
 		return null;
 	}
 
