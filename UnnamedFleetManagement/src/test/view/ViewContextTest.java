@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
+import main.view.FormView;
 import main.view.IView;
 import main.view.ViewContext;
 
@@ -85,6 +86,17 @@ class ViewContextTest {
 		} catch (InputMismatchException e) {
 			fail("Unhandled InputMismatchException");
 		}
+	}
+	
+	@Test
+	void should_show_form_view() {
+		FormView mockedFormView = mock(FormView.class);
+		when(mockedFormView.size()).thenReturn(3);
+		ViewContext SUT = new ViewContext(new Scanner("test test test"));
+		SUT.showForm(mockedFormView);
+		verify(mockedFormView).show(0);
+		verify(mockedFormView).show(1);
+		verify(mockedFormView).show(2);
 	}
 
 }

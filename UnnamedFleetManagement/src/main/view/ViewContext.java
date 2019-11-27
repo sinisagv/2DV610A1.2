@@ -1,5 +1,6 @@
 package main.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ViewContext {
@@ -19,6 +20,11 @@ public class ViewContext {
 			input.next();
 		int selection = input.nextInt();
 		return view.executeOption(selection);
+	}
+
+	public List<String> showForm(FormView formView) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/*
