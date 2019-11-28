@@ -26,7 +26,7 @@ public class AppMain {
 		} catch(IOException | ParserConfigurationException | SAXException e) {
 			System.err.print("Unable to connect to database. Please contact your SysAdmin");
 		}
-		
+		System.out.println("Welcome to the main menu");
 		
 	}
 
