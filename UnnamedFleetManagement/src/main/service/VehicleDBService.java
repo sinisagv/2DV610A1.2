@@ -1,11 +1,15 @@
 package main.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -13,6 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import main.model.CargoType;
 import main.model.Fleet;
@@ -24,21 +29,13 @@ public class VehicleDBService implements IDBService {
 	private Document dataDoc;
 	private Fleet vehicles = new Fleet();
 
-	public VehicleDBService(String filepath) throws Exception {
+	public VehicleDBService(String filepath) throws ParserConfigurationException, SAXException, IOException{
 
-		try {
-			this.dbPath = filepath;
-			File data = new File(dbPath);
-			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
-			dataDoc = documentBuilder.parse(data);
-		} catch (Exception e) {
-			this.dbPath = "src/main/service/vehicles.xml";
-			File data = new File(dbPath);
-			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
-			dataDoc = documentBuilder.parse(data);
-		}
+		this.dbPath = filepath;
+		File data = new File(dbPath);
+		DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
+		dataDoc = documentBuilder.parse(data);
 
 		NodeList vehicleNodes = dataDoc.getElementsByTagName("vehicle");
 
@@ -86,10 +83,13 @@ public class VehicleDBService implements IDBService {
 	}
 
 	@Override
-	public boolean write() throws Exception{
-		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-
+	public boolean write() throws Exception {
 		
+			
+		
+		
+			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 
 			Document document = documentBuilder.newDocument();
@@ -148,6 +148,7 @@ public class VehicleDBService implements IDBService {
 			// You can use that for debugging
 
 			transformer.transform(domSource, streamResult);
+			
 
 		return true;
 

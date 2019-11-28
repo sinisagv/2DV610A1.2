@@ -61,9 +61,4 @@ class BookingTest {
 		assertFalse(sut.removeDriver(mockDriver));
 	}
 	
-	@Test
-	void removeClientShouldReturnTrue() {
-		Booking sut = new Booking();
-		assertTrue(sut.removeClient());
-	}
 }
