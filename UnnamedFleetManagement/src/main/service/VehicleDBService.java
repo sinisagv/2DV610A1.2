@@ -170,7 +170,7 @@ public class VehicleDBService implements IDBService {
 	}
 
 	public boolean removeVehicle(Vehicle vehicle) {
-		return false;
+		return vehicles.removeVehicle(vehicle) && write();
 	}
 
 	public Fleet getFleet() {
