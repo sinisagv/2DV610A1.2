@@ -17,11 +17,19 @@ public class ViewController {
 
 	public Runnable showView(IView view) {
 		view.show();
+		while(true) {
 		while (!input.hasNextInt()) {
 			input.next();
+			System.out.println("Please input an integer");
 		}
 		int selection = input.nextInt();
-		return view.executeOption(selection);
+		try {
+			return view.executeOption(selection);
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("Please input a valid option");
+			continue;
+		}
+		}
 	}
 
 	public List<String> showForm(FormView formView) {

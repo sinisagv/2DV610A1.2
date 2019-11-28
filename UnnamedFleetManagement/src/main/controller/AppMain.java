@@ -29,7 +29,7 @@ public class AppMain {
 			vehicleDatabase = databaseFactory.getVehicleDBService(VEHICLE_DB_FILE_PATH);
 		} catch(IOException | ParserConfigurationException | SAXException e) {
 			System.err.print("Unable to connect to database. Please contact your SysAdmin");
-			System.exit(0);
+			
 		}
 		MenuView mainMenu = new MenuView("Welcome to Unnamed Fleet Management Tool (name TBD)");
 		mainMenu.addOption("Quit", () -> System.exit(1));

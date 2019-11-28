@@ -124,7 +124,7 @@ class ViewControllerTest {
 		// options, we want to handle the IndexOutOfBoundException that results
 
 		// set up fake user inputs
-		Scanner sc = new Scanner("2");
+		Scanner sc = new Scanner("2 2 2 2 2 2 2 2 2 1");
 
 		// set up SUT
 		ViewController SUT = new ViewController(sc);
