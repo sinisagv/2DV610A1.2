@@ -1,10 +1,12 @@
 package main.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -13,6 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import main.model.CargoType;
 import main.model.Fleet;
@@ -24,43 +27,9 @@ public class VehicleDBService implements IDBService {
 	private Document dataDoc;
 	private Fleet vehicles = new Fleet();
 
-	public VehicleDBService(String filepath) throws Exception {
+	public VehicleDBService(String filepath) throws ParserConfigurationException, SAXException, IOException {
 
-		try {
-			this.dbPath = filepath;
-			File data = new File(dbPath);
-			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
-			dataDoc = documentBuilder.parse(data);
-		} catch (Exception e) {
-			this.dbPath = "src/main/service/vehicles.xml";
-			File data = new File(dbPath);
-			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
-			dataDoc = documentBuilder.parse(data);
-		}
-
-		NodeList vehicleNodes = dataDoc.getElementsByTagName("vehicle");
-
-		for (int i = 0; i < vehicleNodes.getLength(); i++) {
-			String tempFName = dataDoc.getElementsByTagName("capacity").item(i).getTextContent();
-			String tempLName = dataDoc.getElementsByTagName("volume").item(i).getTextContent();
-			String tempID = dataDoc.getElementsByTagName("ID").item(i).getTextContent();
-			String tempPersonNo = dataDoc.getElementsByTagName("cargo").item(i).getTextContent();
-			Vehicle tempVehicle = new Vehicle();
-
-			tempVehicle.setCapacity(Integer.parseInt(tempFName));
-			tempVehicle.setVolume(Integer.parseInt(tempLName));
-			tempVehicle.setID(tempID);
-			tempVehicle.setCargoType(Enum.valueOf(CargoType.class, tempPersonNo));
-
-			vehicles.addVehicle(tempVehicle);
-
-		}
-	}
-
-	public VehicleDBService() throws Exception {
-
+		this.dbPath = filepath;
 		File data = new File(dbPath);
 		DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
@@ -86,68 +55,68 @@ public class VehicleDBService implements IDBService {
 	}
 
 	@Override
-	public boolean write() throws Exception{
+	public boolean write() throws Exception {
+
 		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
-		
-			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 
-			Document document = documentBuilder.newDocument();
+		Document document = documentBuilder.newDocument();
 
-			// root element
-			Element root = document.createElement("root");
-			document.appendChild(root);
+		// root element
+		Element root = document.createElement("root");
+		document.appendChild(root);
 
-			// list of members
-			Element vehicleNodes = document.createElement("vehicles");
+		// list of members
+		Element vehicleNodes = document.createElement("vehicles");
 
-			root.appendChild(vehicleNodes);
+		root.appendChild(vehicleNodes);
 
-			// create members
+		// create members
 
-			for (Vehicle v : vehicles) {
+		for (Vehicle v : vehicles) {
 
-				// create member
+			// create member
 
-				Element vehicleElement = document.createElement("vehicle");
+			Element vehicleElement = document.createElement("vehicle");
 
-				// add fName
-				Element capacity = document.createElement("capacity");
-				capacity.appendChild(document.createTextNode(Integer.toString(v.getCapacity())));
-				vehicleElement.appendChild(capacity);
+			// add fName
+			Element capacity = document.createElement("capacity");
+			capacity.appendChild(document.createTextNode(Integer.toString(v.getCapacity())));
+			vehicleElement.appendChild(capacity);
 
-				// add lName
-				Element volume = document.createElement("volume");
-				volume.appendChild(document.createTextNode(Integer.toString(v.getVolume())));
-				vehicleElement.appendChild(volume);
+			// add lName
+			Element volume = document.createElement("volume");
+			volume.appendChild(document.createTextNode(Integer.toString(v.getVolume())));
+			vehicleElement.appendChild(volume);
 
-				// add memberID
-				Element ID = document.createElement("ID");
-				ID.appendChild(document.createTextNode(v.getID()));
-				vehicleElement.appendChild(ID);
+			// add memberID
+			Element ID = document.createElement("ID");
+			ID.appendChild(document.createTextNode(v.getID()));
+			vehicleElement.appendChild(ID);
 
-				// add phoneNo
-				Element cargo = document.createElement("cargo");
-				cargo.appendChild(document.createTextNode(v.getCargoType().toString()));
-				vehicleElement.appendChild(cargo);
+			// add phoneNo
+			Element cargo = document.createElement("cargo");
+			cargo.appendChild(document.createTextNode(v.getCargoType().toString()));
+			vehicleElement.appendChild(cargo);
 
-				// add member to memberlist
-				vehicleNodes.appendChild(vehicleElement);
-			}
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer;
+			// add member to memberlist
+			vehicleNodes.appendChild(vehicleElement);
+		}
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer;
 
-			transformer = transformerFactory.newTransformer();
+		transformer = transformerFactory.newTransformer();
 
-			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File(dbPath));
+		DOMSource domSource = new DOMSource(document);
+		StreamResult streamResult = new StreamResult(new File(dbPath));
 
-			// If you use
-			// StreamResult result = new StreamResult(System.out);
-			// the output will be pushed to the standard output ...
-			// You can use that for debugging
+		// If you use
+		// StreamResult result = new StreamResult(System.out);
+		// the output will be pushed to the standard output ...
+		// You can use that for debugging
 
-			transformer.transform(domSource, streamResult);
+		transformer.transform(domSource, streamResult);
 
 		return true;
 

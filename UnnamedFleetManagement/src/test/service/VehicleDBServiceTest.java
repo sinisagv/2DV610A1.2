@@ -3,8 +3,10 @@ package test.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
@@ -50,16 +52,21 @@ class VehicleDBServiceTest {
 
 	@Test
 	void writeShouldReturnTrue() throws Exception {
-		VehicleDBService sut = new VehicleDBService();
+
+		VehicleDBService sut = new VehicleDBService("src/test/service/testFile.xml");
+
 		Vehicle v = new Vehicle();
 		v.setCapacity(10);
 		v.setCargoType(CargoType.PASSENGERS);
 		v.setVolume(20);
 		assertTrue(sut.write());
-		VehicleDBService sut1 = new VehicleDBService("");
-		assertTrue(sut1.write());
+		
+		assertThrows(FileNotFoundException.class, () -> {
+			String path = "fbdsnkj";
+			VehicleDBService sut1 = new VehicleDBService(path);
+		});
 	}
-	
+
 	@Test
 	void removeVehicleShouldReturnTrue() throws Exception {
 		VehicleDBService sut = new VehicleDBService("src/test/service/testFileWithVehicles.xml");
