@@ -4,16 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Random;
-
-import javax.xml.transform.TransformerException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -69,8 +65,6 @@ class VehicleDBServiceTest {
 			String path = "fbdsnkj";
 			VehicleDBService sut1 = new VehicleDBService(path);
 		});
-		
-
 	}
 
 	@Test
