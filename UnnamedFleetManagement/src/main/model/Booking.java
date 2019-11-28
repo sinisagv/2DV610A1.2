@@ -3,6 +3,7 @@ package main.model;
 import java.util.ArrayList;
 
 public class Booking {
+	private Client client;
 	private TimeFrame timeFrame;
 	private String ID;
 	private ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
@@ -46,6 +47,10 @@ public class Booking {
 //		return this.client;
 //	}
 //
+	public boolean removeClient() {
+		this.client = null;
+		return true;
+	}
 
 	public ArrayList<Vehicle> getVehicles() {
 		return vehicles;
