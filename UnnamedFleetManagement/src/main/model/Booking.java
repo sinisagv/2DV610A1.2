@@ -48,7 +48,8 @@ public class Booking {
 //	}
 //
 	public boolean removeClient() {
-		return false;
+		this.client = null;
+		return true;
 	}
 
 	public ArrayList<Vehicle> getVehicles() {
