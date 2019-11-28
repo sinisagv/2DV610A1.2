@@ -66,5 +66,4 @@ class BookingTest {
 		Booking sut = new Booking();
 		assertTrue(sut.removeClient());
 	}
-
 }
