@@ -60,5 +60,19 @@ class VehicleDBServiceTest {
 		assertTrue(lines >= 1);
 		sc.close();
 	}
+	
+	@Test
+	void removeVehicleShouldReturnTrue() throws Exception {
+		VehicleDBService sut = new VehicleDBService("src/test/service/testFileWithVehicles.xml");
+		Vehicle v = new Vehicle();
+		v.setCapacity(50);
+		v.setVolume(1000);
+		v.setCargoType(CargoType.CARGO);
+		sut.addVehicle(v);
+		assertTrue(sut.removeVehicle(v));
+		assertEquals(0, sut.getFleet().size());
+		assertFalse(sut.removeVehicle(v));
+		
+	}
 
 }
