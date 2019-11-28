@@ -1,23 +1,31 @@
 package test.controller;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import main.service.VehicleDBService;
+import main.controller.AppMain;
+import main.service.DBServiceFactory;
 import main.view.ViewContext;
 
 class AppMainTest {
 
 	@Test
-	void launch_badDBFilePath_shouldPropmtandQuit() {
-		VehicleDBService mockServ = mock(VehicleDBService.class);
-		DBServiceFactory mockServFac = mock(VehicleDBServiceFactory.class);
-		when(mockServFac.getVehicleDBService(WRONG_FILE_PATH)).thenThrow(IOException.class);
+	void launch_badDBFilePath_shouldThrowIOException() {
+		DBServiceFactory mockServFac = mock(DBServiceFactory.class);
+		try {
+			when(mockServFac.getVehicleDBService(any())).thenThrow(IOException.class);
+		} catch (Exception e) {
+			
+		} 
 		
-		AppMain SUT = new AppMain(mock(ViewContext.class), mockServ);
+		AppMain SUT = new AppMain(mock(ViewContext.class), mockServFac);
+		assertThrows(IOException.class, () -> SUT.launch());
 		
 	}
 	
