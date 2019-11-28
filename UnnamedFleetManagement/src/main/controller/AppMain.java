@@ -40,6 +40,7 @@ public class AppMain {
 		
 		AppMain app = new AppMain(new ViewController(new Scanner(System.in)), new DBServiceFactory());
 		app.launch();
+		
 	}
 
 }

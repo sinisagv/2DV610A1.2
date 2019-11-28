@@ -2,6 +2,7 @@ package test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import main.controller.ViewController;
 import main.view.FormView;
 import main.view.IView;
+import main.view.MenuView;
 
 class ViewControllerTest {
 
@@ -81,14 +83,16 @@ class ViewControllerTest {
 		Scanner sc = new Scanner("n\n1");
 		ViewController SUT = new ViewController(sc);
 		try {
-			// removed this assert since ViewContext.showView() can no longer throw exceptions
-			//assertThrows(IllegalArgumentException.class, () -> SUT.showView(mockedIView));
+			// removed this assert since ViewContext.showView() can no longer throw
+			// exceptions
+			// assertThrows(IllegalArgumentException.class, () ->
+			// SUT.showView(mockedIView));
 			SUT.showView(mockedIView);
 		} catch (InputMismatchException e) {
 			fail("Unhandled InputMismatchException");
 		}
 	}
-	
+
 	@Test
 	void should_show_form_view() {
 		FormView mockedFormView = mock(FormView.class);
@@ -99,17 +103,37 @@ class ViewControllerTest {
 		verify(mockedFormView).show(1);
 		verify(mockedFormView).show(2);
 	}
-	
+
 	@Test
 	void should_get_form_inputs() {
 		FormView mockedFormView = mock(FormView.class);
 		when(mockedFormView.size()).thenReturn(3);
 		ViewController SUT = new ViewController(new Scanner("test0\ntest1\ntest2\n"));
 		List<String> actual = SUT.showForm(mockedFormView);
-		for(int i = 0; i < actual.size(); i++) {
+		for (int i = 0; i < actual.size(); i++) {
 			assertEquals("test" + i, actual.get(i));
 		}
 	}
-	
+
+	@Test
+	void showView_UserInputsInvalidInteger_exceptionShouldBeHandled() {
+		// set up mock menu
+		MenuView mockMenu = mock(MenuView.class);
+		doThrow(new IndexOutOfBoundsException()).when(mockMenu).executeOption(2);
+		// when executeOption takes an integer outside of the range of the list of
+		// options, we want to handle the IndexOutOfBoundException that results
+
+		// set up fake user inputs
+		Scanner sc = new Scanner("2");
+
+		// set up SUT
+		ViewController SUT = new ViewController(sc);
+		try {
+			SUT.showView(mockMenu);
+		} catch (Exception e) {
+			fail("Unhandled exception");
+		}
+
+	}
 
 }
