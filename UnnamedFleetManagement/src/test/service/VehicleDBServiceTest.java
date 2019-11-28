@@ -53,7 +53,7 @@ class VehicleDBServiceTest {
 	@Test
 	void writeShouldReturnTrue() throws Exception {
 
-		VehicleDBService sut = new VehicleDBService();
+		VehicleDBService sut = new VehicleDBService("src/test/service/testFile.xml");
 
 		Vehicle v = new Vehicle();
 		v.setCapacity(10);

@@ -27,7 +27,7 @@ public class VehicleDBService implements IDBService {
 	private Document dataDoc;
 	private Fleet vehicles = new Fleet();
 
-	public VehicleDBService(String filepath) throws ParserConfigurationException, SAXException, IOException{
+	public VehicleDBService(String filepath) throws ParserConfigurationException, SAXException, IOException {
 
 		this.dbPath = filepath;
 		File data = new File(dbPath);
@@ -54,99 +54,69 @@ public class VehicleDBService implements IDBService {
 		}
 	}
 
-	public VehicleDBService() throws Exception {
-
-		File data = new File(dbPath);
-		DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
-		dataDoc = documentBuilder.parse(data);
-
-		NodeList vehicleNodes = dataDoc.getElementsByTagName("vehicle");
-
-		for (int i = 0; i < vehicleNodes.getLength(); i++) {
-			String tempFName = dataDoc.getElementsByTagName("capacity").item(i).getTextContent();
-			String tempLName = dataDoc.getElementsByTagName("volume").item(i).getTextContent();
-			String tempID = dataDoc.getElementsByTagName("ID").item(i).getTextContent();
-			String tempPersonNo = dataDoc.getElementsByTagName("cargo").item(i).getTextContent();
-			Vehicle tempVehicle = new Vehicle();
-
-			tempVehicle.setCapacity(Integer.parseInt(tempFName));
-			tempVehicle.setVolume(Integer.parseInt(tempLName));
-			tempVehicle.setID(tempID);
-			tempVehicle.setCargoType(Enum.valueOf(CargoType.class, tempPersonNo));
-
-			vehicles.addVehicle(tempVehicle);
-
-		}
-	}
-
 	@Override
 	public boolean write() throws Exception {
-		
-			
-		
-		
-			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
-			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
-			Document document = documentBuilder.newDocument();
+		DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 
-			// root element
-			Element root = document.createElement("root");
-			document.appendChild(root);
+		Document document = documentBuilder.newDocument();
 
-			// list of members
-			Element vehicleNodes = document.createElement("vehicles");
+		// root element
+		Element root = document.createElement("root");
+		document.appendChild(root);
 
-			root.appendChild(vehicleNodes);
+		// list of members
+		Element vehicleNodes = document.createElement("vehicles");
 
-			// create members
+		root.appendChild(vehicleNodes);
 
-			for (Vehicle v : vehicles) {
+		// create members
 
-				// create member
+		for (Vehicle v : vehicles) {
 
-				Element vehicleElement = document.createElement("vehicle");
+			// create member
 
-				// add fName
-				Element capacity = document.createElement("capacity");
-				capacity.appendChild(document.createTextNode(Integer.toString(v.getCapacity())));
-				vehicleElement.appendChild(capacity);
+			Element vehicleElement = document.createElement("vehicle");
 
-				// add lName
-				Element volume = document.createElement("volume");
-				volume.appendChild(document.createTextNode(Integer.toString(v.getVolume())));
-				vehicleElement.appendChild(volume);
+			// add fName
+			Element capacity = document.createElement("capacity");
+			capacity.appendChild(document.createTextNode(Integer.toString(v.getCapacity())));
+			vehicleElement.appendChild(capacity);
 
-				// add memberID
-				Element ID = document.createElement("ID");
-				ID.appendChild(document.createTextNode(v.getID()));
-				vehicleElement.appendChild(ID);
+			// add lName
+			Element volume = document.createElement("volume");
+			volume.appendChild(document.createTextNode(Integer.toString(v.getVolume())));
+			vehicleElement.appendChild(volume);
 
-				// add phoneNo
-				Element cargo = document.createElement("cargo");
-				cargo.appendChild(document.createTextNode(v.getCargoType().toString()));
-				vehicleElement.appendChild(cargo);
+			// add memberID
+			Element ID = document.createElement("ID");
+			ID.appendChild(document.createTextNode(v.getID()));
+			vehicleElement.appendChild(ID);
 
-				// add member to memberlist
-				vehicleNodes.appendChild(vehicleElement);
-			}
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer;
+			// add phoneNo
+			Element cargo = document.createElement("cargo");
+			cargo.appendChild(document.createTextNode(v.getCargoType().toString()));
+			vehicleElement.appendChild(cargo);
 
-			transformer = transformerFactory.newTransformer();
+			// add member to memberlist
+			vehicleNodes.appendChild(vehicleElement);
+		}
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer;
 
-			DOMSource domSource = new DOMSource(document);
-			StreamResult streamResult = new StreamResult(new File(dbPath));
+		transformer = transformerFactory.newTransformer();
 
-			// If you use
-			// StreamResult result = new StreamResult(System.out);
-			// the output will be pushed to the standard output ...
-			// You can use that for debugging
+		DOMSource domSource = new DOMSource(document);
+		StreamResult streamResult = new StreamResult(new File(dbPath));
 
-			transformer.transform(domSource, streamResult);
-			
+		// If you use
+		// StreamResult result = new StreamResult(System.out);
+		// the output will be pushed to the standard output ...
+		// You can use that for debugging
+
+		transformer.transform(domSource, streamResult);
 
 		return true;
 
