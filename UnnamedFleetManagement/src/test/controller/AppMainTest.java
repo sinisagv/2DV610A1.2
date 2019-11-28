@@ -12,7 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
-import main.AppMain;
+import main.controller.AppMain;
 import main.service.DBServiceFactory;
 import main.view.ViewContext;
 
@@ -29,8 +29,6 @@ class AppMainTest {
 		try {
 			doThrow(new IOException()).when(mockDBFac).getVehicleDBService(any());
 		} catch (ParserConfigurationException | SAXException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		// set up SUT
@@ -42,6 +40,7 @@ class AppMainTest {
 		// get actual
 		String actual = testByteStream.toString();
 		
+		// assert actual = expected
 		assertEquals(expected, actual);
 
 	}
