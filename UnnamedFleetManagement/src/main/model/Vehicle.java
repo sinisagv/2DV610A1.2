@@ -14,19 +14,19 @@ public class Vehicle {
 		super();
 	}
 
-	public Vehicle(ArrayList<TimeFrame> unavailability, CargoType cargoType, int capacity, int volume, String ID) {
-		super();
-		this.schedule = unavailability;
-		this.cargoType = cargoType;
-		this.capacity = capacity;
-		this.volume = volume;
-
-		this.ID = ID;
-	}
-
-	public ArrayList<TimeFrame> getShedule() {
-		return schedule;
-	}
+//	public Vehicle(ArrayList<TimeFrame> unavailability, CargoType cargoType, int capacity, int volume, String ID) {
+//		super();
+//		this.schedule = unavailability;
+//		this.cargoType = cargoType;
+//		this.capacity = capacity;
+//		this.volume = volume;
+//
+//		this.ID = ID;
+//	}
+//
+//	public ArrayList<TimeFrame> getShedule() {
+//		return schedule;
+//	}
 
 	public CargoType getCargoType() {
 		return cargoType;

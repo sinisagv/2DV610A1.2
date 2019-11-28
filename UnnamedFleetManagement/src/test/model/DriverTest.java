@@ -46,6 +46,7 @@ class DriverTest {
 		assertTrue(sut.removeShift(tfs));
 		int expectedSize = 0;
 		assertEquals(sut.getSchedule().size(), expectedSize);
+		assertFalse(sut.removeShift(tfs));
 	}
 
 	@Test

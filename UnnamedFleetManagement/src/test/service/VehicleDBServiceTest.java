@@ -5,10 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Scanner;
+import java.util.Random;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +25,12 @@ class VehicleDBServiceTest {
 		writer.write("");
 		writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" + "<root></root>");
 		writer.flush();
+		VehicleDBService sut = new VehicleDBService("src/test/service/testFileWithVehicles.xml");
+		Vehicle v = new Vehicle();
+		v.setCapacity(new Random().nextInt(250) + 1);
+		v.setVolume(new Random().nextInt(2000) + 1);
+		v.setCargoType(CargoType.PASSENGERS);
+		sut.addVehicle(v);
 	}
 
 	@AfterEach
@@ -40,25 +45,19 @@ class VehicleDBServiceTest {
 		v.setCargoType(CargoType.PASSENGERS);
 		v.setVolume(20);
 		assertTrue(sut.addVehicle(v));
+		assertEquals(sut.getFleet().size(), 1);
 	}
 
 	@Test
 	void writeShouldReturnTrue() throws Exception {
-		VehicleDBService sut = new VehicleDBService("src/test/service/testFile.xml");
+		VehicleDBService sut = new VehicleDBService();
 		Vehicle v = new Vehicle();
-		File db = new File("src/test/service/testFile.xml");
-		Scanner sc = new Scanner(db);
-		int lines = 0;
-		while (sc.hasNextLine()) {
-			sc.nextLine();
-			lines++;
-		}
 		v.setCapacity(10);
 		v.setCargoType(CargoType.PASSENGERS);
 		v.setVolume(20);
 		assertTrue(sut.write());
-		assertTrue(lines >= 1);
-		sc.close();
+		VehicleDBService sut1 = new VehicleDBService("");
+		assertTrue(sut1.write());
 	}
 	
 	@Test
@@ -69,10 +68,21 @@ class VehicleDBServiceTest {
 		v.setVolume(1000);
 		v.setCargoType(CargoType.CARGO);
 		sut.addVehicle(v);
+		Vehicle v1 = new Vehicle();
+		v1.setCapacity(150);
+		v1.setVolume(2000);
+		v1.setCargoType(CargoType.PASSENGERS);
+		sut.addVehicle(v);
+		sut.addVehicle(v1);
 		assertTrue(sut.removeVehicle(v));
-		assertEquals(0, sut.getFleet().size());
 		assertFalse(sut.removeVehicle(v));
-		
+		assertTrue(sut.removeVehicle(v1));
+		VehicleDBService sut1 = new VehicleDBService("src/test/service/testFile.xml");
+		Vehicle v2 = new Vehicle();
+		v2.setCapacity(10);
+		v2.setCargoType(CargoType.PASSENGERS);
+		v2.setVolume(200);
+		assertFalse(sut1.removeVehicle(v2));
 	}
 
 }

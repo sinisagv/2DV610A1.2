@@ -22,7 +22,9 @@ public class Fleet implements Iterable<Vehicle>{
 	public boolean editVehicle(Vehicle vehicle) {
 		for(Vehicle v : vehicles) {
 			if(vehicle.getID().equals(v.getID())) {
-				return removeVehicle(v) && addVehicle(vehicle);
+				removeVehicle(v);
+				addVehicle(vehicle);
+				return true;
 			}
 		}
 		return false;

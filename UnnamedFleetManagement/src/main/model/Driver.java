@@ -12,36 +12,36 @@ public class Driver {
 		super();
 	}
 
-	public Driver(String ID, String name, ArrayList<Qualification> qualifications, ArrayList<TimeFrame> schedule) {
-		super();
-		this.name = name;
-		this.qualifications = qualifications;
-		this.schedule = schedule;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+//	public Driver(String ID, String name, ArrayList<Qualification> qualifications, ArrayList<TimeFrame> schedule) {
+//		super();
+//		this.name = name;
+//		this.qualifications = qualifications;
+//		this.schedule = schedule;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public ArrayList<Qualification> getQualifications() {
 		return qualifications;
 	}
 
-	public void setQualifications(ArrayList<Qualification> qualifications) {
-		this.qualifications = qualifications;
-	}
+//	public void setQualifications(ArrayList<Qualification> qualifications) {
+//		this.qualifications = qualifications;
+//	}
 
 	public ArrayList<TimeFrame> getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(ArrayList<TimeFrame> schedule) {
-		this.schedule = schedule;
-	}
+//	public void setSchedule(ArrayList<TimeFrame> schedule) {
+//		this.schedule = schedule;
+//	}
 
 	public boolean addShift(TimeFrame shift) {
 		for (TimeFrame tf : schedule) {

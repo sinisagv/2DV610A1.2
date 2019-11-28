@@ -5,9 +5,7 @@ import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -28,10 +26,19 @@ public class VehicleDBService implements IDBService {
 
 	public VehicleDBService(String filepath) throws Exception {
 
-		File data = new File(filepath);
-		DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
-		dataDoc = documentBuilder.parse(data);
+		try {
+			this.dbPath = filepath;
+			File data = new File(dbPath);
+			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
+			dataDoc = documentBuilder.parse(data);
+		} catch (Exception e) {
+			this.dbPath = "src/main/service/vehicles.xml";
+			File data = new File(dbPath);
+			DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder documentBuilder = dbfactory.newDocumentBuilder();
+			dataDoc = documentBuilder.parse(data);
+		}
 
 		NodeList vehicleNodes = dataDoc.getElementsByTagName("vehicle");
 
@@ -51,7 +58,7 @@ public class VehicleDBService implements IDBService {
 
 		}
 	}
-	
+
 	public VehicleDBService() throws Exception {
 
 		File data = new File(dbPath);
@@ -79,16 +86,10 @@ public class VehicleDBService implements IDBService {
 	}
 
 	@Override
-	public void read() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean write() {
+	public boolean write() throws Exception{
 		DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 
-		try {
+		
 			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
 
 			Document document = documentBuilder.newDocument();
@@ -135,29 +136,24 @@ public class VehicleDBService implements IDBService {
 			}
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer;
-			try {
-				transformer = transformerFactory.newTransformer();
 
-				DOMSource domSource = new DOMSource(document);
-				StreamResult streamResult = new StreamResult(new File(dbPath));
+			transformer = transformerFactory.newTransformer();
 
-				// If you use
-				// StreamResult result = new StreamResult(System.out);
-				// the output will be pushed to the standard output ...
-				// You can use that for debugging
+			DOMSource domSource = new DOMSource(document);
+			StreamResult streamResult = new StreamResult(new File(dbPath));
 
-				transformer.transform(domSource, streamResult);
-			} catch (TransformerException e) {
-				return false;
-			}
-		} catch (ParserConfigurationException e) {
-			return false;
-		}
+			// If you use
+			// StreamResult result = new StreamResult(System.out);
+			// the output will be pushed to the standard output ...
+			// You can use that for debugging
+
+			transformer.transform(domSource, streamResult);
+
 		return true;
 
 	}
 
-	public boolean addVehicle(Vehicle vehicle) {
+	public boolean addVehicle(Vehicle vehicle) throws Exception {
 		if (vehicle.getID() == null || vehicle.getID() == "") {
 			vehicle.setID(generateID());
 		}
@@ -169,7 +165,7 @@ public class VehicleDBService implements IDBService {
 		return UUID.randomUUID().toString();
 	}
 
-	public boolean removeVehicle(Vehicle vehicle) {
+	public boolean removeVehicle(Vehicle vehicle) throws Exception {
 		return vehicles.removeVehicle(vehicle) && write();
 	}
 

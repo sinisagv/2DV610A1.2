@@ -1,6 +1,5 @@
 package main.service;
 
 public interface IDBService {
-	 void read();
-	 boolean write();
+	 boolean write() throws Exception;
 }

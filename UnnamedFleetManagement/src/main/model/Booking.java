@@ -38,16 +38,16 @@ public class Booking {
 	public boolean removeDriver(Driver driver) {
 		return drivers.remove(driver);
 	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public Client getClient() {
-		return this.client;
-	}
-
-	public boolean removeClient(Client client) {
+//
+//	public void setClient(Client client) {
+//		this.client = client;
+//	}
+//
+//	public Client getClient() {
+//		return this.client;
+//	}
+//
+	public boolean removeClient() {
 		return false;
 	}
 
@@ -55,20 +55,20 @@ public class Booking {
 		return vehicles;
 	}
 
-	public TimeFrame getTimeFrame() {
-		return timeFrame;
-	}
-
-	public void setTimeFrame(TimeFrame timeFrame) {
-		this.timeFrame = timeFrame;
-	}
-
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
-	}
+//	public TimeFrame getTimeFrame() {
+//		return timeFrame;
+//	}
+//
+//	public void setTimeFrame(TimeFrame timeFrame) {
+//		this.timeFrame = timeFrame;
+//	}
+//
+//	public String getID() {
+//		return ID;
+//	}
+//
+//	public void setID(String iD) {
+//		ID = iD;
+//	}
 
 }
