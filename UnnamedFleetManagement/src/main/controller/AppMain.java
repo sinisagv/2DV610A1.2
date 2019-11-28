@@ -8,14 +8,13 @@ import org.xml.sax.SAXException;
 
 import main.service.DBServiceFactory;
 import main.service.VehicleDBService;
-import main.view.ViewContext;
 
 public class AppMain {
 	
-	private ViewContext viewController;
+	private ViewController viewController;
 	private DBServiceFactory databaseFactory;
 
-	public AppMain(ViewContext viewController, DBServiceFactory databaseFactory) {
+	public AppMain(ViewController viewController, DBServiceFactory databaseFactory) {
 		this.viewController = viewController;
 		this.databaseFactory = databaseFactory;
 	}

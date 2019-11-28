@@ -1,4 +1,4 @@
-package test.view;
+package test.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -12,11 +12,11 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
+import main.controller.ViewController;
 import main.view.FormView;
 import main.view.IView;
-import main.view.ViewContext;
 
-class ViewContextTest {
+class ViewControllerTest {
 
 	@Test
 	void start_should_show_first_view() {
@@ -24,7 +24,7 @@ class ViewContextTest {
 		when(mockedIView.menuLength()).thenReturn(1);
 		when(mockedIView.executeOption(1)).thenReturn(() -> {
 		});
-		ViewContext SUT = new ViewContext(new Scanner("1"));
+		ViewController SUT = new ViewController(new Scanner("1"));
 		SUT.showView(mockedIView);
 		verify(mockedIView).show();
 	}
@@ -40,7 +40,7 @@ class ViewContextTest {
 		when(testView.executeOption(1)).thenReturn(() -> {
 		});
 
-		ViewContext SUT = new ViewContext(new Scanner("1"));
+		ViewController SUT = new ViewController(new Scanner("1"));
 		SUT.showView(testView);
 		verify(testView).show(); // checks that show() is called on the first option of menu 1
 
@@ -56,7 +56,7 @@ class ViewContextTest {
 
 		Scanner sc = new Scanner("1");
 
-		ViewContext SUT = new ViewContext(sc);
+		ViewController SUT = new ViewController(sc);
 		SUT.showView(mockedIView);
 		verify(mockedIView).executeOption(1);
 	}
@@ -79,7 +79,7 @@ class ViewContextTest {
 		when(mockedIView.executeOption(1)).thenReturn(() -> {
 		});
 		Scanner sc = new Scanner("n\n1");
-		ViewContext SUT = new ViewContext(sc);
+		ViewController SUT = new ViewController(sc);
 		try {
 			// removed this assert since ViewContext.showView() can no longer throw exceptions
 			//assertThrows(IllegalArgumentException.class, () -> SUT.showView(mockedIView));
@@ -93,7 +93,7 @@ class ViewContextTest {
 	void should_show_form_view() {
 		FormView mockedFormView = mock(FormView.class);
 		when(mockedFormView.size()).thenReturn(3);
-		ViewContext SUT = new ViewContext(new Scanner("test\ntest\ntest\n"));
+		ViewController SUT = new ViewController(new Scanner("test\ntest\ntest\n"));
 		SUT.showForm(mockedFormView);
 		verify(mockedFormView).show(0);
 		verify(mockedFormView).show(1);
@@ -104,7 +104,7 @@ class ViewContextTest {
 	void should_get_form_inputs() {
 		FormView mockedFormView = mock(FormView.class);
 		when(mockedFormView.size()).thenReturn(3);
-		ViewContext SUT = new ViewContext(new Scanner("test0\ntest1\ntest2\n"));
+		ViewController SUT = new ViewController(new Scanner("test0\ntest1\ntest2\n"));
 		List<String> actual = SUT.showForm(mockedFormView);
 		for(int i = 0; i < actual.size(); i++) {
 			assertEquals("test" + i, actual.get(i));

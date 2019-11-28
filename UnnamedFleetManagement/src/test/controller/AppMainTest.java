@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 import main.controller.AppMain;
+import main.controller.ViewController;
 import main.service.DBServiceFactory;
-import main.view.ViewContext;
 
 class AppMainTest {
 
@@ -32,7 +32,7 @@ class AppMainTest {
 		}
 		
 		// set up SUT
-		AppMain SUT = new AppMain(mock(ViewContext.class), mockDBFac);
+		AppMain SUT = new AppMain(mock(ViewController.class), mockDBFac);
 		SUT.launch();
 		
 		String expected = "Unable to connect to database. Please contact your SysAdmin";

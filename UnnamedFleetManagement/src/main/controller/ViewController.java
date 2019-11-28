@@ -1,14 +1,17 @@
-package main.view;
+package main.controller;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ViewContext {
+import main.view.FormView;
+import main.view.IView;
+
+public class ViewController {
 
 	private Scanner input;
 
-	public ViewContext(Scanner input) {
+	public ViewController(Scanner input) {
 		this.input = input;
 	}
 
@@ -28,13 +31,6 @@ public class ViewContext {
 			out.add(input.nextLine());
 		}
 		return out;
-	}
-
-	public static void main(String[] args) {
-		ViewContext vc = new ViewContext(new Scanner(System.in));
-		MenuView menu = new MenuView("TestMenu");
-		menu.addOption("dont press this", () -> System.exit(0));
-		vc.showView(menu);
 	}
 
 }
