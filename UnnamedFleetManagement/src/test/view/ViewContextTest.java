@@ -22,8 +22,7 @@ class ViewContextTest {
 	void start_should_show_first_view() {
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1);
-		when(mockedIView.executeOption(1)).thenReturn(() -> {
-		});
+		when(mockedIView.executeOption(1)).thenReturn(() -> {});
 		ViewContext SUT = new ViewContext(new Scanner("1"));
 		SUT.showView(mockedIView);
 		verify(mockedIView).show();
@@ -35,10 +34,8 @@ class ViewContextTest {
 		IView testView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1);
 		when(testView.menuLength()).thenReturn(1);
-		when(mockedIView.executeOption(1)).thenReturn(() -> {
-		});
-		when(testView.executeOption(1)).thenReturn(() -> {
-		});
+		when(mockedIView.executeOption(1)).thenReturn(() -> {});
+		when(testView.executeOption(1)).thenReturn(() -> {});
 
 		ViewContext SUT = new ViewContext(new Scanner("1"));
 		SUT.showView(testView);
@@ -51,8 +48,7 @@ class ViewContextTest {
 												// always be 1 and call executeOption with that input)
 		IView mockedIView = mock(IView.class);
 		when(mockedIView.menuLength()).thenReturn(1);
-		when(mockedIView.executeOption(1)).thenReturn(() -> {
-		});
+		when(mockedIView.executeOption(1)).thenReturn(() -> {});
 
 		Scanner sc = new Scanner("1");
 
