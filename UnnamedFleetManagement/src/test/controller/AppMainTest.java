@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 
 import main.controller.AppMain;
 import main.controller.ViewController;
+import main.model.Fleet;
 import main.service.DBServiceFactory;
 import main.service.VehicleDBService;
 
@@ -32,6 +33,7 @@ class AppMainTest {
 		DBServiceFactory mockDBFac = mock(DBServiceFactory.class);
 		try {
 			doThrow(new IOException()).when(mockDBFac).getVehicleDBService(any());
+			
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 		}
 		
@@ -54,16 +56,23 @@ class AppMainTest {
 		// set up output stream to monitor
 		ByteArrayOutputStream testByteStream = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(testByteStream));
-		
+		Fleet mockFleet = mock(Fleet.class);
+		when(mockFleet.size()).thenReturn(1);
+		VehicleDBService mockService = mock(VehicleDBService.class);
+		when(mockService.getFleet()).thenReturn(mockFleet);
 		// set up mock DBFactory
 		DBServiceFactory mockDBFactory = mock(DBServiceFactory.class);
 		try {
-			when(mockDBFactory.getVehicleDBService(any())).thenReturn(mock(VehicleDBService.class));
+			when(mockDBFactory.getVehicleDBService(any())).thenReturn(mockService);
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 		}
-		
+		// set up mock view controller
+		ViewController mockVC = mock(ViewController.class);
+		when(mockVC.showView(any())).thenReturn(() -> {
+			System.out.println("something");
+		});
 		// set up SUT
-		AppMain SUT = new AppMain(mock(ViewController.class), mockDBFactory);
+		AppMain SUT = new AppMain(mockVC, mockDBFactory);
 		SUT.launch();
 		
 		// get actual

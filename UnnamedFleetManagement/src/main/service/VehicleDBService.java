@@ -23,7 +23,7 @@ import main.model.Vehicle;
 
 public class VehicleDBService implements IDBService {
 
-	private String dbPath = "src/main/service/vehicles.xml";
+	private String dbPath;
 	private Document dataDoc;
 	private Fleet vehicles = new Fleet();
 

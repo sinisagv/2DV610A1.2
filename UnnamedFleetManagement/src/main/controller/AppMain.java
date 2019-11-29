@@ -26,24 +26,22 @@ public class AppMain {
 		VehicleDBService vehicleDatabase = null;
 		try {
 			vehicleDatabase = databaseFactory.getVehicleDBService(VEHICLE_DB_FILE_PATH);
+			MenuView mainMenu = new MenuView("Welcome to Unnamed Fleet Management Tool (name TBD)");
+			MenuView fleetSummaryView = new MenuView(
+					"Fleet Summary: " + vehicleDatabase.getFleet().size() + " vehicles registered.");
+			fleetSummaryView.addOption("Back to main menu", () -> {
+				viewController.showView(mainMenu).run();
+			});
+
+			mainMenu.addOption("Display Fleet Summary", () -> {
+				viewController.showView(fleetSummaryView).run();
+			});
+			mainMenu.addOption("Quit", () -> System.exit(1));
+			viewController.showView(mainMenu).run();
 		} catch (IOException | ParserConfigurationException | SAXException e) {
 			System.err.print("Unable to connect to database. Please contact your SysAdmin");
 		}
-		if (vehicleDatabase == null) {
-			System.exit(0);
-		}
-		MenuView mainMenu = new MenuView("Welcome to Unnamed Fleet Management Tool (name TBD)");
-		MenuView fleetSummaryView = new MenuView(
-				"Fleet Summary: " + vehicleDatabase.getFleet().size() + " vehicles registered.");
-		fleetSummaryView.addOption("Back to main menu", () -> {
-			viewController.showView(mainMenu).run();
-		});
-
-		mainMenu.addOption("Display Fleet Summary", () -> {
-			viewController.showView(fleetSummaryView).run();
-		});
-		mainMenu.addOption("Quit", () -> System.exit(1));
-		viewController.showView(mainMenu).run();
+		
 	}
 
 	public static void main(String[] args) {

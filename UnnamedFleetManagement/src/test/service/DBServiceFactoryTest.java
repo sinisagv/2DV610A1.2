@@ -24,20 +24,11 @@ class DBServiceFactoryTest {
 	}
 
 	@Test
-	void getVehicleDBServiceShouldReturnNotNull() {
+	void getVehicleDBServiceShouldReturnNotNull() throws ParserConfigurationException, SAXException, IOException {
 		DBServiceFactory sut = new DBServiceFactory();
-		try {
-			assertNotNull(sut.getVehicleDBService("src/test/service/testFile.xml"));
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		assertNotNull(sut.getVehicleDBService("src/test/service/testFile.xml"));
+
 		assertThrows(IOException.class, () -> {
 			sut.getVehicleDBService("fsef352/532");
 		});
